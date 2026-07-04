@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8"></meta>
+<title>Reserve, Halyard House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"></link>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"></link>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet"></link>
+<style>
+  html, body { margin: 0; padding: 0; background: #F5F1E9; }
+  * { box-sizing: border-box; }
+  ::selection { background: #C4A672; color: #10161D; }
+  input { font-family: 'Archivo', sans-serif; }
+  input:focus { outline: none; }
+  input[type="text"]::placeholder { color: rgba(16,22,29,0.28); }
+  @keyframes checkDraw { to { stroke-dashoffset: 0; } }
+  @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+  @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes kenburnsSlow { 0% { transform: scale(1.03); } 100% { transform: scale(1.16); } }
+  @media (prefers-reduced-motion: reduce) { * { transition-duration: 0.001s !important; animation-duration: 0.001s !important; } }
+</style>
+</helmet>
+
+<div style="background: #F5F1E9; color: #10161D; font-family: 'Archivo', sans-serif; min-height: 100vh; display: flex; flex-direction: column;">
+
+  <!-- NAV -->
+  <nav style="display: flex; align-items: center; justify-content: space-between; padding: 22px 40px; background: #10161D; position: relative; z-index: 5;">
+    <div style="position: absolute; inset: 0; opacity: 0.05; pointer-events: none; background-image: url('data:image/svg+xml;utf8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;300&quot; height=&quot;300&quot;&gt;&lt;filter id=&quot;n&quot;&gt;&lt;feTurbulence type=&quot;fractalNoise&quot; baseFrequency=&quot;0.9&quot; numOctaves=&quot;2&quot;/&gt;&lt;/filter&gt;&lt;rect width=&quot;300&quot; height=&quot;300&quot; filter=&quot;url(%23n)&quot;/&gt;&lt;/svg&gt;');"></div>
+    <a href="Albany Home.dc.html" style="text-decoration: none; display: flex; align-items: baseline; gap: 10px; position: relative;">
+      <span style="font-family: 'Playfair Display', serif; font-size: 21px; color: #F5F1E9;">Halyard<span style="color: #C4A672;">.</span></span>
+      <span style="font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(245,241,233,0.55);">House</span>
+    </a>
+    <div style="display: flex; align-items: center; gap: 14px; position: relative;">
+      <span style="width: 6px; height: 6px; border-radius: 50%; background: #C4A672;"></span>
+      <span style="font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(245,241,233,0.6);">Secure reservation</span>
+    </div>
+  </nav>
+
+  <!-- BODY -->
+  <sc-if value="{{ isConfirmed }}" hint-placeholder-val="{{ false }}">
+    <main style="flex: 1; display: flex; align-items: flex-start; justify-content: center; padding: 88px 48px 120px; background: #F5F1E9;">
+      <div style="width: 100%; max-width: 720px; text-align: center; animation: popIn 0.7s cubic-bezier(0.16,1,0.3,1);">
+        <svg width="76" height="76" viewBox="0 0 72 72" style="margin-bottom: 36px;">
+          <circle cx="36" cy="36" r="34" fill="none" stroke="#C4A672" stroke-width="1.2"></circle>
+          <path d="M20 37 L31 48 L52 24" fill="none" stroke="#C4A672" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="60" stroke-dashoffset="60" style="animation: checkDraw 0.7s ease 0.3s forwards;"></path>
+        </svg>
+        <div style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(16,22,29,0.5); margin-bottom: 18px;">Booking confirmed</div>
+        <h1 style="margin: 0 0 22px; font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(36px, 4vw, 56px); color: #10161D;">See you soon, {{ firstName }}.</h1>
+        <p style="margin: 0 auto 52px; max-width: 46ch; font-size: 15px; line-height: 1.75; color: rgba(16,22,29,0.62); font-weight: 300;">A confirmation has been sent to {{ guestEmail }}. Your reference is <strong style="color: #10161D; letter-spacing: 0.04em;">{{ bookingRef }}</strong>.</p>
+        <div style="display: inline-block; text-align: left; background: #10161D; color: #F5F1E9; padding: 44px 52px; min-width: 400px;">
+          <div style="font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(196,166,114,0.9); margin-bottom: 10px;">{{ selectedRoomIdx }}</div>
+          <div style="font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 22px;">{{ selectedRoomName }}</div>
+          <div style="display: flex; justify-content: space-between; padding: 12px 0; border-top: 1px solid rgba(245,241,233,0.16); font-size: 13px;"><span style="color: rgba(245,241,233,0.55);">Dates</span><span>{{ checkIn }} &nbsp;to&nbsp; {{ checkOut }}</span></div>
+          <div style="display: flex; justify-content: space-between; padding: 12px 0; border-top: 1px solid rgba(245,241,233,0.16); font-size: 13px;"><span style="color: rgba(245,241,233,0.55);">Guests</span><span>{{ guests }}</span></div>
+          <div style="display: flex; justify-content: space-between; padding: 16px 0 0; margin-top: 10px; border-top: 1px solid rgba(196,166,114,0.5); font-family: 'Playfair Display', serif; font-size: 25px;"><span>Paid</span><span style="color: #C4A672;">${{ grandTotal }}</span></div>
+        </div>
+        <div style="margin-top: 52px;">
+          <a href="Albany Home.dc.html" style="text-decoration: none; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #10161D; border-bottom: 1px solid #C4A672; padding-bottom: 5px;">Return to Halyard House</a>
+        </div>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isNotConfirmed }}" hint-placeholder-val="{{ true }}">
+    <main style="flex: 1; display: flex; align-items: stretch; min-height: 0;">
+
+      <!-- LEFT IMAGE PANEL -->
+      <div style="width: 42%; position: sticky; top: 0; height: calc(100vh - 65px); overflow: hidden; background: #10161D; flex-shrink: 0;">
+        <div key="{{ panelImgKey }}" style="position: absolute; inset: 0; animation: fadeSlideIn 1.3s ease;">
+          <div role="img" style="position: absolute; inset: 0; background-image: url('{{ panelImg }}'); background-size: cover; background-position: center; filter: brightness(0.72) saturate(0.9); animation: kenburnsSlow 22s ease-out forwards;"></div>
+          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,22,29,0.35) 0%, rgba(16,22,29,0.15) 45%, rgba(16,22,29,0.88) 100%);"></div>
+        </div>
+        <div style="position: absolute; left: 44px; right: 44px; bottom: 48px;">
+          <div style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(196,166,114,0.92); margin-bottom: 18px;">{{ panelEyebrow }}</div>
+          <div style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(28px, 2.6vw, 40px); line-height: 1.2; color: #F5F1E9;">{{ panelCaption }}</div>
+          <sc-if value="{{ hasSummary }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top: 40px; padding-top: 28px; border-top: 1px solid rgba(245,241,233,0.18);">
+              <div style="display: flex; justify-content: space-between; font-size: 13px; color: rgba(245,241,233,0.65); margin-bottom: 10px;"><span>{{ nights }} nights, {{ guests }} guests</span><span>{{ checkIn }} &nbsp;to&nbsp; {{ checkOut }}</span></div>
+              <sc-if value="{{ selectedRoomName }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 20px;">
+                  <span style="font-family: 'Playfair Display', serif; font-size: 20px; color: #F5F1E9;">{{ selectedRoomName }}</span>
+                  <span style="font-family: 'Playfair Display', serif; font-size: 20px; color: #C4A672;">${{ grandTotal }}</span>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+
+      <!-- RIGHT FORM PANEL -->
+      <div style="width: 58%; overflow-y: visible; padding: 56px 64px 120px; background: #F5F1E9;">
+
+        <!-- PROGRESS -->
+        <div style="max-width: 620px; margin: 0 0 56px;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <sc-for list="{{ stepList }}" as="s" hint-placeholder-count="5">
+              <div style="display: flex; align-items: center; gap: 12px; flex: 1;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 22px;">
+                  <div style="{{ s.dotStyle }}">{{ s.num }}</div>
+                  <div style="font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: {{ s.labelColor }}; white-space: nowrap;">{{ s.label }}</div>
+                </div>
+                <sc-if value="{{ s.hasLine }}" hint-placeholder-val="{{ true }}">
+                  <div style="flex: 1; height: 1px; background: rgba(16,22,29,0.14); margin-bottom: 20px; position: relative; overflow: hidden;">
+                    <div style="{{ s.lineFillStyle }}"></div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="max-width: 620px; position: relative;">
+
+          <!-- STEP 1: DATES & GUESTS -->
+          <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+            <div style="{{ stepAnimStyle }}">
+              <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px;">
+                <span style="font-family: 'Playfair Display', serif; font-size: 14px; color: #C4A672;">01</span>
+                <span style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(16,22,29,0.5);">When &amp; who</span>
+              </div>
+              <h1 style="margin: 0 0 44px; font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(30px, 3vw, 42px); color: #10161D;">Choose your dates.</h1>
+
+              <div style="position: relative;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(16,22,29,0.16); border: 1px solid rgba(16,22,29,0.16);">
+                  <button onClick="{{ openCalIn }}" style="text-align: left; cursor: pointer; border: none; background: {{ inFieldBg }}; padding: 20px 22px;">
+                    <div style="font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(16,22,29,0.48);">Check in</div>
+                    <div style="margin-top: 8px; font-family: 'Playfair Display', serif; font-size: 22px; color: #10161D;">{{ checkIn }}</div>
+                  </button>
+                  <button onClick="{{ openCalOut }}" style="text-align: left; cursor: pointer; border: none; background: {{ outFieldBg }}; padding: 20px 22px;">
+                    <div style="font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(16,22,29,0.48);">Check out</div>
+                    <div style="margin-top: 8px; font-family: 'Playfair Display', serif; font-size: 22px; color: #10161D;">{{ checkOut }}</div>
+                  </button>
+                </div>
+
+                <sc-if value="{{ calOpen }}" hint-placeholder-val="{{ false }}">
+                  <div style="position: absolute; top: calc(100% + 10px); left: 0; right: 0; background: #FFFFFF; border: 1px solid rgba(16,22,29,0.14); box-shadow: 0 24px 60px rgba(16,22,29,0.16); z-index: 10; padding: 24px; animation: fadeSlideIn 0.5s cubic-bezier(0.16,1,0.3,1);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
+                      <button onClick="{{ calPrev }}" style="border: none; background: none; cursor: pointer; font-size: 18px; color: #10161D; padding: 4px 10px;">‹</button>
+                      <div style="font-family: 'Playfair Display', serif; font-size: 17px; color: #10161D;">{{ calMonthLabel }}</div>
+                      <button onClick="{{ calNext }}" style="border: none; background: none; cursor: pointer; font-size: 18px; color: #10161D; padding: 4px 10px;">›</button>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 8px;">
+                      <sc-for list="{{ calWeekdays }}" as="wd" hint-placeholder-count="7">
+                        <div style="text-align: center; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(16,22,29,0.4); padding: 4px 0;">{{ wd }}</div>
+                      </sc-for>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;">
+                      <sc-for list="{{ calDays }}" as="day" hint-placeholder-count="42">
+                        <button onClick="{{ day.onClick }}" disabled="{{ day.disabled }}" style="{{ day.style }}">{{ day.label }}</button>
+                      </sc-for>
+                    </div>
+                    <div style="margin-top: 16px; font-size: 12px; color: rgba(16,22,29,0.45); text-align: center;">{{ calHint }}</div>
+                  </div>
+                </sc-if>
+              </div>
+
+              <div style="display: flex; align-items: center; justify-content: space-between; padding: 26px 0; border-bottom: 1px solid rgba(16,22,29,0.14); margin: 32px 0 0;">
+                <div>
+                  <div style="font-size: 15px; color: #10161D;">Guests</div>
+                  <div style="font-size: 12px; color: rgba(16,22,29,0.48); margin-top: 4px;">{{ nights }} night stay</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 22px;">
+                  <button onClick="{{ decGuests }}" style="width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(16,22,29,0.22); background: transparent; font-size: 16px; color: #10161D; cursor: pointer; transition: border-color 0.25s;">−</button>
+                  <span style="font-family: 'Playfair Display', serif; font-size: 20px; min-width: 20px; text-align: center;">{{ guests }}</span>
+                  <button onClick="{{ incGuests }}" style="width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(16,22,29,0.22); background: transparent; font-size: 16px; color: #10161D; cursor: pointer; transition: border-color 0.25s;">+</button>
+                </div>
+              </div>
+
+              <sc-if value="{{ dateError }}" hint-placeholder-val="{{ false }}">
+                <div style="font-size: 12px; color: #A6432E; margin-top: 20px;">{{ dateError }}</div>
+              </sc-if>
+
+              <button onClick="{{ goToRooms }}" style="margin-top: 40px; cursor: pointer; border: none; display: inline-block; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #10161D; background: #C4A672; padding: 19px 46px; font-weight: 500; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);">Check availability →</button>
+            </div>
+          </sc-if>
+
+          <!-- STEP 2: ROOM SELECTION -->
+          <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+            <div style="{{ stepAnimStyle }}">
+              <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px;">
+                <span style="font-family: 'Playfair Display', serif; font-size: 14px; color: #C4A672;">02</span>
+                <span style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(16,22,29,0.5);">Your room</span>
+              </div>
+              <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 36px;">
+                <h1 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(30px, 3vw, 42px); color: #10161D;">{{ nights }} nights, {{ guests }} guests.</h1>
+                <button onClick="{{ backToStep1 }}" style="background: none; border: none; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(16,22,29,0.48); cursor: pointer; border-bottom: 1px solid rgba(16,22,29,0.3); padding-bottom: 2px;">Edit dates</button>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+                <sc-for list="{{ roomOptions }}" as="room" hint-placeholder-count="5">
+                  <div onClick="{{ room.select }}" style="{{ room.cardStyle }}">
+                    <div style="width: 128px; height: 96px; flex: 0 0 auto; background-image: url('{{ room.img }}'); background-size: cover; background-position: center;"></div>
+                    <div style="flex: 1; padding: 0 22px;">
+                      <div style="font-family: 'Playfair Display', serif; font-size: 20px; color: #10161D;">{{ room.name }}</div>
+                      <div style="font-size: 12px; color: rgba(16,22,29,0.48); margin-top: 6px;">{{ room.spec }}</div>
+                    </div>
+                    <div style="text-align: right; padding-right: 12px;">
+                      <div style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(16,22,29,0.42);">{{ nights }} nights</div>
+                      <div style="font-family: 'Playfair Display', serif; font-size: 22px; color: #C4A672;">${{ room.total }}</div>
+                    </div>
+                    <div style="{{ room.radioStyle }}"></div>
+                  </div>
+                </sc-for>
+              </div>
+
+              <button disabled="{{ !selectedRoomId }}" onClick="{{ goToAddons }}" style="{{ primaryBtnStyle }}">Continue to add ons →</button>
+            </div>
+          </sc-if>
+
+          <!-- STEP 3: ADD-ONS -->
+          <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+            <div style="{{ stepAnimStyle }}">
+              <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px;">
+                <span style="font-family: 'Playfair Display', serif; font-size: 14px; color: #C4A672;">03</span>
+                <span style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(16,22,29,0.5);">Add to your stay</span>
+              </div>
+              <h1 style="margin: 0 0 36px; font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(30px, 3vw, 42px); color: #10161D;">A few extras.</h1>
+
+              <div style="display: flex; flex-direction: column;">
+                <sc-for list="{{ addonList }}" as="addon" hint-placeholder-count="4">
+                  <div onClick="{{ addon.toggle }}" style="display: flex; align-items: center; justify-content: space-between; padding: 22px 0; border-bottom: 1px solid rgba(16,22,29,0.12); cursor: pointer;">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                      <div style="{{ addon.checkStyle }}"></div>
+                      <div>
+                        <div style="font-size: 15.5px; color: #10161D;">{{ addon.name }}</div>
+                        <div style="font-size: 12px; color: rgba(16,22,29,0.48); margin-top: 4px;">{{ addon.desc }}</div>
+                      </div>
+                    </div>
+                    <div style="font-family: 'Playfair Display', serif; font-size: 17px; color: #10161D; flex-shrink: 0; margin-left: 16px;">+${{ addon.price }}</div>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+                <button onClick="{{ backToStep2 }}" style="background: none; border: none; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(16,22,29,0.48); cursor: pointer;">← Back</button>
+                <button onClick="{{ goToDetails }}" style="cursor: pointer; border: none; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #10161D; background: #C4A672; padding: 19px 46px;">Continue →</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- STEP 4: GUEST DETAILS -->
+          <sc-if value="{{ isStep4 }}" hint-placeholder-val="{{ false }}">
+            <div style="{{ stepAnimStyle }}">
+              <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px;">
+                <span style="font-family: 'Playfair Display', serif; font-size: 14px; color: #C4A672;">04</span>
+                <span style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(16,22,29,0.5);">Your details</span>
+              </div>
+              <h1 style="margin: 0 0 40px; font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(30px, 3vw, 42px); color: #10161D;">Who's staying?</h1>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div style="{{ fieldWrap.name }}">
+                  <label style="{{ floatLabelStyle.name }}">Full name</label>
+                  <input type="text" value="{{ guestName }}" onChange="{{ onGuestName }}" onFocus="{{ focusName }}" onBlur="{{ blurName }}" style="width: 100%; border: none; border-bottom: 1px solid rgba(16,22,29,0.25); background: transparent; font-size: 17px; padding: 10px 0; color: #10161D;"></input>
+                </div>
+                <div style="{{ fieldWrap.email }}">
+                  <label style="{{ floatLabelStyle.email }}">Email</label>
+                  <input type="email" value="{{ guestEmail }}" onChange="{{ onGuestEmail }}" onFocus="{{ focusEmail }}" onBlur="{{ blurEmail }}" style="width: 100%; border: none; border-bottom: 1px solid rgba(16,22,29,0.25); background: transparent; font-size: 17px; padding: 10px 0; color: #10161D;"></input>
+                </div>
+                <div style="{{ fieldWrap.phone }}">
+                  <label style="{{ floatLabelStyle.phone }}">Phone</label>
+                  <input type="tel" value="{{ guestPhone }}" onChange="{{ onGuestPhone }}" onFocus="{{ focusPhone }}" onBlur="{{ blurPhone }}" style="width: 100%; border: none; border-bottom: 1px solid rgba(16,22,29,0.25); background: transparent; font-size: 17px; padding: 10px 0; color: #10161D;"></input>
+                </div>
+                <div style="{{ fieldWrap.requests }}">
+                  <label style="{{ floatLabelStyle.requests }}">Special requests</label>
+                  <input type="text" value="{{ guestRequests }}" onChange="{{ onGuestRequests }}" onFocus="{{ focusRequests }}" onBlur="{{ blurRequests }}" style="width: 100%; border: none; border-bottom: 1px solid rgba(16,22,29,0.25); background: transparent; font-size: 17px; padding: 10px 0; color: #10161D;"></input>
+                </div>
+              </div>
+
+              <sc-if value="{{ detailsError }}" hint-placeholder-val="{{ false }}">
+                <div style="font-size: 12px; color: #A6432E; margin-top: 24px;">{{ detailsError }}</div>
+              </sc-if>
+
+              <div style="display: flex; justify-content: space-between; margin-top: 48px;">
+                <button onClick="{{ backToStep3 }}" style="background: none; border: none; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(16,22,29,0.48); cursor: pointer;">← Back</button>
+                <button onClick="{{ goToPayment }}" style="cursor: pointer; border: none; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #10161D; background: #C4A672; padding: 19px 46px;">Continue to payment →</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- STEP 5: PAYMENT -->
+          <sc-if value="{{ isStep5 }}" hint-placeholder-val="{{ false }}">
+            <div style="{{ stepAnimStyle }}">
+              <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px;">
+                <span style="font-family: 'Playfair Display', serif; font-size: 14px; color: #C4A672;">05</span>
+                <span style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(16,22,29,0.5);">Payment</span>
+              </div>
+              <h1 style="margin: 0 0 36px; font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(30px, 3vw, 42px); color: #10161D;">Secure your stay.</h1>
+
+              <label style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px;">
+                <span style="font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(16,22,29,0.5);">Card number</span>
+                <input type="text" value="{{ cardNumber }}" onChange="{{ onCardNumber }}" placeholder="4242 4242 4242 4242" style="border: none; border-bottom: 1px solid rgba(16,22,29,0.25); background: transparent; font-size: 17px; padding: 10px 0; color: #10161D;"></input>
+              </label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 26px;">
+                <label style="display: flex; flex-direction: column; gap: 10px;">
+                  <span style="font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(16,22,29,0.5);">Expiry</span>
+                  <input type="text" value="{{ cardExpiry }}" onChange="{{ onCardExpiry }}" placeholder="MM / YY" style="border: none; border-bottom: 1px solid rgba(16,22,29,0.25); background: transparent; font-size: 17px; padding: 10px 0; color: #10161D;"></input>
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 10px;">
+                  <span style="font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(16,22,29,0.5);">CVC</span>
+                  <input type="text" value="{{ cardCvc }}" onChange="{{ onCardCvc }}" placeholder="123" style="border: none; border-bottom: 1px solid rgba(16,22,29,0.25); background: transparent; font-size: 17px; padding: 10px 0; color: #10161D;"></input>
+                </label>
+              </div>
+
+              <sc-if value="{{ paymentError }}" hint-placeholder-val="{{ false }}">
+                <div style="font-size: 12px; color: #A6432E; margin-top: 24px;">{{ paymentError }}</div>
+              </sc-if>
+
+              <div style="display: flex; align-items: center; gap: 10px; margin-top: 32px; font-size: 11px; color: rgba(16,22,29,0.42); letter-spacing: 0.04em;">
+                <span>🔒</span><span>Payments are encrypted and processed securely.</span>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+                <button onClick="{{ backToStep4 }}" style="background: none; border: none; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(16,22,29,0.48); cursor: pointer;">← Back</button>
+                <button onClick="{{ submitPayment }}" style="{{ payBtnStyle }}">{{ payBtnLabel }}</button>
+              </div>
+            </div>
+          </sc-if>
+
+        </div>
+      </div>
+    </main>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const ROOMS = [
+  { id: "std", name: "Standard Room", spec: "Queen · 2 guests · 20 m²", rate: 149, img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80" },
+  { id: "twin", name: "Standard Twin", spec: "2 x Single · 2 guests · 21 m²", rate: 159, img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80" },
+  { id: "dlx", name: "Deluxe Room", spec: "King · 2 guests · 26 m²", rate: 189, img: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=800&q=80" },
+  { id: "fam", name: "Family Room", spec: "Queen + bunks · 4 guests · 30 m²", rate: 219, img: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80" },
+  { id: "dfs", name: "Deluxe Family Suite", spec: "Two rooms · 5 guests · 42 m²", rate: 269, img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" },
+];
+const ADDONS = [
+  { id: "bfast", name: "Breakfast, both of you", desc: "Full buffet, 6.30 to 10.00", price: 42 },
+  { id: "late", name: "Late checkout", desc: "Stay until 2pm, subject to availability", price: 35 },
+  { id: "parking", name: "Undercover parking", desc: "One vehicle, for the length of your stay", price: 18 },
+  { id: "welcome", name: "Welcome bottle, Porongurup riesling", desc: "Waiting in your room on arrival", price: 55 },
+];
+const STEP_LABELS = ["Dates", "Room", "Add ons", "Details", "Payment"];
+const PANELS = [
+  { img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1400&q=80", eyebrow: "Halyard House", caption: "Rest, at the edge of the Pacific." },
+  { img: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1400&q=80", eyebrow: "Five kinds of rest", caption: "Every room looks out on the Pacific, or the redwoods." },
+  { img: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1400&q=80", eyebrow: "Ember & Tide", caption: "A few extras, to make the stay yours." },
+  { img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1400&q=80", eyebrow: "Almost there", caption: "Just your details, then we'll hold the room." },
+  { img: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1400&q=80", eyebrow: "Secure your stay", caption: "Encrypted payment, refundable up to 48 hours out." },
+];
+const WEEKDAYS = ["M", "T", "W", "T", "F", "S", "S"];
+const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+function toStr(dt) { return dt.toISOString().slice(0, 10); }
+function fromStr(s) { return new Date(s + "T00:00:00"); }
+function fmtDate(d) {
+  const dt = fromStr(d);
+  return dt.toLocaleDateString("en-AU", { day: "numeric", month: "short" });
+}
+function addDays(dateStr, n) {
+  const dt = fromStr(dateStr);
+  dt.setDate(dt.getDate() + n);
+  return toStr(dt);
+}
+function startOfMonth(dt) { return new Date(dt.getFullYear(), dt.getMonth(), 1); }
+
+class Component extends DCLogic {
+  state = {
+    step: 1,
+    checkIn: addDays(new Date().toISOString().slice(0, 10), 14),
+    checkOut: addDays(new Date().toISOString().slice(0, 10), 17),
+    guests: 2,
+    dateError: "",
+    calOpen: null, // 'in' | 'out' | null
+    calMonth: null, // Date, first of month
+    selectedRoomId: null,
+    addonIds: [],
+    guestName: "", guestEmail: "", guestPhone: "", guestRequests: "",
+    focusField: null,
+    detailsError: "",
+    cardNumber: "", cardExpiry: "", cardCvc: "",
+    paymentError: "",
+    paying: false,
+    confirmed: false,
+    bookingRef: "",
+    animKey: 0,
+  };
+
+  nights() {
+    const n = Math.round((fromStr(this.state.checkOut) - fromStr(this.state.checkIn)) / 86400000);
+    return n > 0 ? n : 0;
+  }
+
+  goStep(n) {
+    this.setState({ step: n, animKey: this.state.animKey + 1, calOpen: null });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  openCal(which) {
+    const anchor = which === "in" ? this.state.checkIn : this.state.checkOut;
+    this.setState({ calOpen: which, calMonth: startOfMonth(fromStr(anchor)) });
+  }
+
+  buildCalDays() {
+    const s = this.state;
+    if (!s.calMonth) return [];
+    const month = s.calMonth;
+    const firstWeekday = (month.getDay() + 6) % 7; // Mon=0
+    const daysInMonth = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
+    const todayStr = toStr(new Date());
+    const cells = [];
+    for (let i = 0; i < firstWeekday; i++) cells.push(null);
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dt = new Date(month.getFullYear(), month.getMonth(), d);
+      cells.push(toStr(dt));
+    }
+    while (cells.length < 42) cells.push(null);
+
+    return cells.map((dateStr) => {
+      if (!dateStr) return { label: "", disabled: true, style: "visibility:hidden;", onClick: () => {} };
+      const isPast = dateStr < todayStr;
+      const isCheckIn = dateStr === s.checkIn;
+      const isCheckOut = dateStr === s.checkOut;
+      const inRange = dateStr > s.checkIn && dateStr < s.checkOut;
+      const disabled = s.calOpen === "out" ? dateStr <= s.checkIn : isPast;
+      let bg = "transparent", color = "#10161D", weight = "400";
+      if (isCheckIn || isCheckOut) { bg = "#10161D"; color = "#F5F1E9"; weight = "500"; }
+      else if (inRange) { bg = "rgba(196,166,114,0.18)"; }
+      if (disabled) color = "rgba(16,22,29,0.25)";
+      return {
+        label: String(parseInt(dateStr.slice(8, 10), 10)),
+        disabled,
+        style: `border:none; cursor:${disabled ? "default" : "pointer"}; background:${bg}; color:${color}; font-weight:${weight}; font-size:13px; padding:9px 0; border-radius:50%; transition: background 0.4s ease; font-family:'Archivo',sans-serif;`,
+        onClick: () => {
+          if (disabled) return;
+          if (s.calOpen === "in") {
+            const newOut = dateStr >= s.checkOut ? addDays(dateStr, 3) : s.checkOut;
+            this.setState({ checkIn: dateStr, checkOut: newOut, calOpen: "out", calMonth: startOfMonth(fromStr(newOut)) });
+          } else {
+            this.setState({ checkOut: dateStr, calOpen: null });
+          }
+        },
+      };
+    });
+  }
+
+  renderVals() {
+    const s = this.state;
+    const nights = this.nights();
+    const room = ROOMS.find((r) => r.id === s.selectedRoomId);
+    const roomIdx = room ? "No. " + String(ROOMS.indexOf(room) + 1).padStart(2, "0") : "";
+    const roomTotal = room ? room.rate * nights : 0;
+    const selectedAddons = ADDONS.filter((a) => s.addonIds.includes(a.id));
+    const addonsTotal = selectedAddons.reduce((sum, a) => sum + a.price, 0);
+    const grandTotal = roomTotal + addonsTotal;
+
+    const stepList = STEP_LABELS.map((label, i) => {
+      const num = i + 1;
+      const active = num === s.step;
+      const done = num < s.step;
+      const dotColor = done || active ? "#10161D" : "transparent";
+      const dotBorder = done || active ? "#10161D" : "rgba(16,22,29,0.3)";
+      const dotText = done || active ? "#F5F1E9" : "rgba(16,22,29,0.4)";
+      return {
+        num: done ? "✓" : String(num),
+        label,
+        hasLine: num < STEP_LABELS.length,
+        labelColor: active ? "#10161D" : "rgba(16,22,29,0.4)",
+        dotStyle: `width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;border:1px solid ${dotBorder};background:${dotColor};color:${dotText};transition:all 0.6s ease;font-family:'Playfair Display',serif;`,
+        lineFillStyle: `position:absolute;inset:0;background:#C4A672;transform:scaleX(${done ? 1 : 0});transform-origin:left;transition:transform 0.9s cubic-bezier(0.16,1,0.3,1);`,
+      };
+    });
+
+    const roomOptions = ROOMS.map((r, i) => {
+      const selected = s.selectedRoomId === r.id;
+      return {
+        ...r,
+        idx: i,
+        total: r.rate * nights,
+        select: () => this.setState({ selectedRoomId: r.id }),
+        cardStyle: `display:flex;align-items:center;cursor:pointer;padding:14px;border:1px solid ${selected ? "#C4A672" : "rgba(16,22,29,0.14)"};background:${selected ? "rgba(196,166,114,0.08)" : "transparent"};transition:all 0.5s ease;position:relative;`,
+        radioStyle: `position:absolute;top:14px;right:14px;width:16px;height:16px;border-radius:50%;border:1px solid ${selected ? "#C4A672" : "rgba(16,22,29,0.3)"};background:${selected ? "#C4A672" : "transparent"};transition:all 0.5s ease;`,
+      };
+    });
+
+    const addonList = ADDONS.map((a) => {
+      const checked = s.addonIds.includes(a.id);
+      return {
+        ...a,
+        toggle: () => {
+          const ids = checked ? s.addonIds.filter((id) => id !== a.id) : [...s.addonIds, a.id];
+          this.setState({ addonIds: ids });
+        },
+        checkStyle: `width:21px;height:21px;border:1px solid ${checked ? "#C4A672" : "rgba(16,22,29,0.3)"};background:${checked ? "#C4A672" : "transparent"};transition:all 0.4s ease;flex-shrink:0;`,
+      };
+    });
+
+    const fieldOpts = ["name", "email", "phone", "requests"];
+    const fieldWrap = {}, floatLabelStyle = {};
+    fieldOpts.forEach((f) => {
+      const val = s["guest" + f.charAt(0).toUpperCase() + f.slice(1)];
+      const active = s.focusField === f || (val && val.length);
+      fieldWrap[f] = "position:relative; padding-top:6px;";
+      floatLabelStyle[f] = `position:absolute; left:0; top:${active ? "-14px" : "18px"}; font-size:${active ? "11px" : "17px"}; letter-spacing:${active ? "0.14em" : "0"}; text-transform:${active ? "uppercase" : "none"}; color:${active ? "rgba(16,22,29,0.5)" : "rgba(16,22,29,0.4)"}; transition: all 0.45s cubic-bezier(0.16,1,0.3,1); pointer-events:none;`;
+    });
+
+    const step = s.confirmed ? 6 : s.step;
+    const panel = PANELS[Math.min(step, 5) - 1] || PANELS[0];
+
+    return {
+      isConfirmed: s.confirmed,
+      isNotConfirmed: !s.confirmed,
+      panelImg: panel.img,
+      panelEyebrow: panel.eyebrow,
+      panelCaption: panel.caption,
+      panelImgKey: step,
+      hasSummary: step >= 2,
+      stepList,
+      isStep1: s.step === 1,
+      isStep2: s.step === 2,
+      isStep3: s.step === 3,
+      isStep4: s.step === 4,
+      isStep5: s.step === 5,
+      stepAnimStyle: `animation: fadeSlideIn 0.9s cubic-bezier(0.16,1,0.3,1);`,
+      checkIn: fmtDate(s.checkIn), checkOut: fmtDate(s.checkOut),
+      nights,
+      guests: s.guests,
+      dateError: s.dateError,
+      inFieldBg: s.calOpen === "in" ? "rgba(196,166,114,0.12)" : "#FFFFFF",
+      outFieldBg: s.calOpen === "out" ? "rgba(196,166,114,0.12)" : "#FFFFFF",
+      openCalIn: () => this.openCal("in"),
+      openCalOut: () => this.openCal("out"),
+      calOpen: !!s.calOpen,
+      calMonthLabel: s.calMonth ? `${MONTH_NAMES[s.calMonth.getMonth()]} ${s.calMonth.getFullYear()}` : "",
+      calWeekdays: WEEKDAYS,
+      calDays: s.calMonth ? this.buildCalDays() : [],
+      calHint: s.calOpen === "in" ? "Select your arrival date" : "Select your departure date",
+      calPrev: () => { const m = new Date(s.calMonth); m.setMonth(m.getMonth() - 1); this.setState({ calMonth: m }); },
+      calNext: () => { const m = new Date(s.calMonth); m.setMonth(m.getMonth() + 1); this.setState({ calMonth: m }); },
+      incGuests: () => this.setState({ guests: Math.min(8, s.guests + 1) }),
+      decGuests: () => this.setState({ guests: Math.max(1, s.guests - 1) }),
+      goToRooms: () => {
+        if (nights <= 0) { this.setState({ dateError: "Check out must be after check in." }); return; }
+        this.setState({ dateError: "" });
+        this.goStep(2);
+      },
+      backToStep1: () => this.goStep(1),
+      roomOptions,
+      selectedRoomId: s.selectedRoomId,
+      primaryBtnStyle: `margin-top:28px; cursor:${s.selectedRoomId ? "pointer" : "not-allowed"}; border:none; font-size:12px; letter-spacing:0.24em; text-transform:uppercase; color:#10161D; background:${s.selectedRoomId ? "#C4A672" : "rgba(16,22,29,0.15)"}; padding:19px 46px; font-weight:500; opacity:${s.selectedRoomId ? 1 : 0.6}; transition: all 0.3s ease;`,
+      goToAddons: () => { if (s.selectedRoomId) this.goStep(3); },
+      backToStep2: () => this.goStep(2),
+      addonList,
+      goToDetails: () => this.goStep(4),
+      backToStep3: () => this.goStep(3),
+      guestName: s.guestName, guestEmail: s.guestEmail, guestPhone: s.guestPhone, guestRequests: s.guestRequests,
+      onGuestName: (e) => this.setState({ guestName: e.target.value }),
+      onGuestEmail: (e) => this.setState({ guestEmail: e.target.value }),
+      onGuestPhone: (e) => this.setState({ guestPhone: e.target.value }),
+      onGuestRequests: (e) => this.setState({ guestRequests: e.target.value }),
+      focusName: () => this.setState({ focusField: "name" }),
+      focusEmail: () => this.setState({ focusField: "email" }),
+      focusPhone: () => this.setState({ focusField: "phone" }),
+      focusRequests: () => this.setState({ focusField: "requests" }),
+      blurName: () => this.setState({ focusField: null }),
+      blurEmail: () => this.setState({ focusField: null }),
+      blurPhone: () => this.setState({ focusField: null }),
+      blurRequests: () => this.setState({ focusField: null }),
+      fieldWrap, floatLabelStyle,
+      detailsError: s.detailsError,
+      goToPayment: () => {
+        if (!s.guestName.trim() || !s.guestEmail.trim() || !s.guestEmail.includes("@")) {
+          this.setState({ detailsError: "Please enter your name and a valid email." });
+          return;
+        }
+        this.setState({ detailsError: "" });
+        this.goStep(5);
+      },
+      backToStep4: () => this.goStep(4),
+      cardNumber: s.cardNumber, cardExpiry: s.cardExpiry, cardCvc: s.cardCvc,
+      onCardNumber: (e) => this.setState({ cardNumber: e.target.value }),
+      onCardExpiry: (e) => this.setState({ cardExpiry: e.target.value }),
+      onCardCvc: (e) => this.setState({ cardCvc: e.target.value }),
+      paymentError: s.paymentError,
+      selectedRoomName: room ? room.name : "",
+      selectedRoomIdx: roomIdx,
+      roomTotal, selectedAddons, grandTotal,
+      payBtnLabel: s.paying ? "Processing…" : `Pay $${grandTotal}`,
+      payBtnStyle: `cursor:${s.paying ? "default" : "pointer"}; border:none; font-size:12px; letter-spacing:0.24em; text-transform:uppercase; color:#10161D; background:#C4A672; padding:19px 46px; opacity:${s.paying ? 0.7 : 1};`,
+      submitPayment: () => {
+        if (s.paying) return;
+        const digits = s.cardNumber.replace(/\s/g, "");
+        if (digits.length < 12 || !s.cardExpiry.trim() || !s.cardCvc.trim()) {
+          this.setState({ paymentError: "Enter a valid card number, expiry and CVC." });
+          return;
+        }
+        this.setState({ paymentError: "", paying: true });
+        setTimeout(() => {
+          const ref = "HH" + Math.random().toString(36).slice(2, 8).toUpperCase();
+          this.setState({ paying: false, confirmed: true, bookingRef: ref });
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 2000);
+      },
+      firstName: (s.guestName.trim().split(" ")[0]) || "guest",
+      bookingRef: s.bookingRef,
+    };
+  }
+
+  componentDidMount() {
+    this._onDocClick = (e) => {
+      if (!this.state.calOpen) return;
+      const target = e.target;
+      if (target.closest && (target.closest("button") || target.closest("[style*='position: absolute']"))) return;
+      this.setState({ calOpen: null });
+    };
+  }
+  componentWillUnmount() {}
+}
+</script>
+</body>
+</html>

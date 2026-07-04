@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8"></meta>
+<title>Halyard House, Rest at the edge of the Pacific</title>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 84"><rect width="120" height="84" fill="#10161D"></rect><text x="60" y="46" font-family="serif" font-size="20" fill="#C4A672" text-anchor="middle">H.</text></svg></template>
+<link rel="preconnect" href="https://fonts.googleapis.com"></link>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"></link>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet"></link>
+<style>
+  html, body { margin: 0; padding: 0; background: #F5F1E9; }
+  body { overscroll-behavior: none; }
+  * { box-sizing: border-box; }
+  ::selection { background: #C4A672; color: #10161D; }
+  html { scrollbar-width: thin; scrollbar-color: #C4A672 #10161D; }
+  @keyframes kenburns { 0% { transform: scale(1.02); } 100% { transform: scale(1.14); } }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  @keyframes scrollcue { 0% { transform: translateY(-100%); } 55% { transform: translateY(0); } 100% { transform: translateY(100%); } }
+  @keyframes spinSlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; transition-duration: 0.001s !important; }
+  }
+</style>
+</helmet>
+
+<div style="background: #F5F1E9; color: #10161D; font-family: 'Archivo', sans-serif; font-weight: 400; overflow: clip; cursor: none;" data-root="true">
+
+  <!-- ===== GRAIN OVERLAY ===== -->
+  <div style="position: fixed; inset: -50%; width: 200%; height: 200%; z-index: 90; pointer-events: none; opacity: 0.055; background-image: url('data:image/svg+xml;utf8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;300&quot; height=&quot;300&quot;&gt;&lt;filter id=&quot;n&quot;&gt;&lt;feTurbulence type=&quot;fractalNoise&quot; baseFrequency=&quot;0.9&quot; numOctaves=&quot;2&quot;/&gt;&lt;/filter&gt;&lt;rect width=&quot;300&quot; height=&quot;300&quot; filter=&quot;url(%23n)&quot;/&gt;&lt;/svg&gt;');"></div>
+
+  <!-- ===== CUSTOM CURSOR ===== -->
+  <div data-cursor-dot="true" style="position: fixed; top: 0; left: 0; width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: #C4A672; z-index: 100; pointer-events: none; opacity: 0;"></div>
+  <div data-cursor-ring="true" style="position: fixed; top: 0; left: 0; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; border: 1px solid rgba(196,166,114,0.85); z-index: 100; pointer-events: none; display: flex; align-items: center; justify-content: center; opacity: 0; transition: width 0.35s cubic-bezier(0.16,1,0.3,1), height 0.35s cubic-bezier(0.16,1,0.3,1), margin 0.35s cubic-bezier(0.16,1,0.3,1), background 0.35s, border-color 0.35s;">
+    <span data-cursor-label="true" style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #10161D; opacity: 0; transition: opacity 0.25s; font-weight: 500;"></span>
+  </div>
+
+  <!-- ===== PRELOADER ===== -->
+  <div data-pre="true" style="position: fixed; inset: 0; z-index: 80; background: #10161D; display: flex; align-items: center; justify-content: center; transition: transform 1.6s cubic-bezier(0.76,0,0.24,1);">
+    <div style="text-align: center;">
+      <div style="overflow: hidden;">
+        <div data-pre-word="true" style="font-family: 'Playfair Display', serif; font-size: 64px; color: #F5F1E9; letter-spacing: 0.02em; transform: translateY(110%); transition: transform 1.3s cubic-bezier(0.16,1,0.3,1);">Halyard<span data-accent="text" style="color: #C4A672;">.</span></div>
+      </div>
+      <div style="overflow: hidden; margin-top: 14px;">
+        <div data-pre-sub="true" style="font-size: 12px; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(245,241,233,0.55); transform: translateY(110%); transition: transform 1.3s cubic-bezier(0.16,1,0.3,1) 0.2s;">House &nbsp;·&nbsp; Mendocino, California</div>
+      </div>
+    </div>
+    <div data-pre-count="true" style="position: absolute; right: 48px; bottom: 40px; font-family: 'Playfair Display', serif; font-size: 88px; font-weight: 400; color: rgba(245,241,233,0.28); font-variant-numeric: tabular-nums;">0</div>
+    <div style="position: absolute; left: 48px; bottom: 52px; height: 1px; width: 180px; background: rgba(245,241,233,0.18);">
+      <div data-pre-bar="true" style="height: 100%; width: 0%; background: #C4A672;"></div>
+    </div>
+  </div>
+
+  <!-- ===== NAV ===== -->
+  <nav data-nav="true" style="position: fixed; top: 0; left: 0; right: 0; z-index: 70; display: flex; align-items: center; justify-content: space-between; padding: 26px 48px; transition: background 0.5s, backdrop-filter 0.5s, padding 0.5s, border-color 0.5s; border-bottom: 1px solid transparent; opacity: 0; transform: translateY(-16px);">
+    <a href="#top" data-hover="true" style="text-decoration: none; display: flex; align-items: baseline; gap: 10px; cursor: none;">
+      <span data-nav-logo="true" style="font-family: 'Playfair Display', serif; font-size: 24px; color: #F5F1E9; transition: color 0.5s;">Halyard<span data-accent="text" style="color: #C4A672;">.</span></span>
+      <span data-nav-logosub="true" style="font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(245,241,233,0.6); transition: color 0.5s;">House</span>
+    </a>
+    <div style="display: flex; align-items: center; gap: 36px;">
+      <a href="#stay" data-navlink="true" data-hover="true" style="cursor: none; text-decoration: none; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(245,241,233,0.85); transition: color 0.5s; position: relative; padding-bottom: 4px;">Stay</a>
+      <a href="#dine" data-navlink="true" data-hover="true" style="cursor: none; text-decoration: none; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(245,241,233,0.85); transition: color 0.5s; position: relative; padding-bottom: 4px;">Dine</a>
+      <a href="#experience" data-navlink="true" data-hover="true" style="cursor: none; text-decoration: none; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(245,241,233,0.85); transition: color 0.5s; position: relative; padding-bottom: 4px;">Experience</a>
+      <a href="#find" data-navlink="true" data-hover="true" style="cursor: none; text-decoration: none; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(245,241,233,0.85); transition: color 0.5s; position: relative; padding-bottom: 4px;">Find us</a>
+      <a href="Halyard House Booking.dc.html" data-magnetic="true" data-hover="true" data-accent="btn" style="cursor: none; text-decoration: none; display: inline-block; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #10161D; background: #C4A672; padding: 14px 28px; border-radius: 999px; font-weight: 500;">Reserve</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header id="top" data-screen-label="Hero" style="position: relative; height: 100vh; min-height: 640px; overflow: hidden; background: #10161D;">
+    <div data-hero-media="true" style="position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s ease;">
+      <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2400&q=80" alt="Hotel pool at dusk" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.72) saturate(0.85); animation: kenburns 26s ease-out forwards;"></img>
+      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,22,29,0.72) 0%, rgba(16,22,29,0.28) 42%, rgba(16,22,29,0.85) 100%);"></div>
+    </div>
+    <div style="position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 72px;">
+      <div style="overflow: hidden; margin-bottom: 28px;">
+        <div data-hero-line="true" style="transform: translateY(110%); transition: transform 1.7s cubic-bezier(0.16,1,0.3,1) 0.15s; font-size: 12px; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(245,241,233,0.92); display: flex; align-items: center; gap: 14px;">
+          <span data-accent="bg" style="display: inline-block; width: 36px; height: 1px; background: #C4A672;"></span>
+          Mendocino, California &nbsp;·&nbsp; 39.31° N, 123.80° W
+        </div>
+      </div>
+      <h1 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(56px, 7.4vw, 128px); line-height: 1.04; color: #F5F1E9; letter-spacing: -0.01em; max-width: 15ch;">
+        <span style="display: block; overflow: hidden; padding-bottom: 0.08em;"><span data-hero-line="true" style="display: block; transform: translateY(110%); transition: transform 1.8s cubic-bezier(0.16,1,0.3,1) 0.4s;">Rest, at the edge</span></span>
+        <span style="display: block; overflow: hidden; padding-bottom: 0.12em;"><span data-hero-line="true" style="display: block; transform: translateY(110%); transition: transform 1.8s cubic-bezier(0.16,1,0.3,1) 0.65s;">of the <em data-accent="text" style="font-style: italic; color: #C4A672;">Pacific</em></span></span>
+      </h1>
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-top: 44px;">
+        <div style="overflow: hidden;">
+          <p data-hero-line="true" style="margin: 0; transform: translateY(120%); transition: transform 1.7s cubic-bezier(0.16,1,0.3,1) 0.9s; max-width: 44ch; font-size: 15px; line-height: 1.7; font-weight: 300; color: rgba(245,241,233,0.95);">A quiet base on the Mendocino coast: five kinds of rest, a table worth staying in for, and the wild edge of the Pacific at your door.</p>
+        </div>
+        <div data-hero-line="true" style="transform: translateY(140%); opacity: 0; transition: transform 1.7s cubic-bezier(0.16,1,0.3,1) 1.1s, opacity 1.7s ease 1.1s; display: flex; align-items: center; gap: 18px;">
+          <span style="font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(245,241,233,0.6);">Scroll</span>
+          <span style="display: inline-block; width: 1px; height: 56px; background: rgba(245,241,233,0.25); overflow: hidden; position: relative;"><span data-accent="bg" style="position: absolute; inset: 0; background: #C4A672; animation: scrollcue 2.8s cubic-bezier(0.76,0,0.24,1) infinite;"></span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== 01 MANIFESTO ===== -->
+  <section data-screen-label="Manifesto" style="position: relative; padding: 160px 48px 140px; background: #F5F1E9;">
+    <div style="max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 64px;">
+      <div>
+        <div data-io="fade" style="opacity: 0; transform: translateY(30px); display: flex; align-items: baseline; gap: 16px;">
+          <span data-accent="text" style="font-family: 'Playfair Display', serif; font-size: 15px; color: #C4A672;">01</span>
+          <span style="font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(16,22,29,0.55);">The house</span>
+        </div>
+        <div data-io="fade" style="opacity: 0; transform: translateY(30px); margin-top: 56px; position: relative; overflow: hidden; aspect-ratio: 3 / 4; max-width: 340px;" data-hover="true" data-cursor="View">
+          <img data-parallax="0.12" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="Mendocino coastline" style="position: absolute; inset: -8% 0; width: 100%; height: 116%; object-fit: cover; filter: grayscale(35%); transition: filter 0.8s ease, transform 0.8s ease;"></img>
+        </div>
+        <div data-io="fade" style="opacity: 0; transform: translateY(30px); margin-top: 20px; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(16,22,29,0.45);">Van Damme Beach, 6 min</div>
+      </div>
+      <div style="padding-top: 8px;">
+        <p data-words="true" style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(32px, 3.4vw, 54px); line-height: 1.28; color: #10161D; max-width: 24ch;">Where the North Coast slows down, so do we. Rooms without noise, a table worth staying in for, and Mendocino's coast, headlands and history within minutes.</p>
+        <div style="display: flex; gap: 80px; margin-top: 88px; border-top: 1px solid rgba(16,22,29,0.14); padding-top: 40px;">
+          <div data-io="fade" style="opacity: 0; transform: translateY(30px);">
+            <div style="font-family: 'Playfair Display', serif; font-size: 56px; line-height: 1; color: #10161D;"><span data-count="74">0</span></div>
+            <div style="margin-top: 12px; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(16,22,29,0.5);">Rooms &amp; suites</div>
+          </div>
+          <div data-io="fade" style="opacity: 0; transform: translateY(30px);">
+            <div style="font-family: 'Playfair Display', serif; font-size: 56px; line-height: 1; color: #10161D;"><span data-count="8.8" data-decimals="1">0</span></div>
+            <div style="margin-top: 12px; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(16,22,29,0.5);">Guest rating / 10</div>
+          </div>
+          <div data-io="fade" style="opacity: 0; transform: translateY(30px);">
+            <div style="font-family: 'Playfair Display', serif; font-size: 56px; line-height: 1; color: #10161D;"><span data-count="6">0</span><span data-accent="text" style="color: #C4A672;">′</span></div>
+            <div style="margin-top: 12px; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(16,22,29,0.5);">To the beach</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 02 ROOMS, PINNED HORIZONTAL ===== -->
+  <section id="stay" data-screen-label="Rooms" data-hwrap="true" style="position: relative; height: 420vh; background: #10161D;">
+    <div style="position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; justify-content: center;">
+      <div style="position: absolute; top: 0; left: 48px; right: 48px; padding-top: 110px; display: flex; justify-content: space-between; align-items: baseline; z-index: 3;">
+        <div data-io="fade" style="opacity: 0; transform: translateY(30px); display: flex; align-items: baseline; gap: 16px;">
+          <span data-accent="text" style="font-family: 'Playfair Display', serif; font-size: 15px; color: #C4A672;">02</span>
+          <span style="font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(245,241,233,0.55);">Stay</span>
+        </div>
+        <h2 data-io="fade" style="opacity: 0; transform: translateY(30px); margin: 0; font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(30px, 3vw, 48px); color: #F5F1E9;">Five kinds of rest<span data-accent="text" style="color: #C4A672;">.</span></h2>
+        <div data-io="fade" style="opacity: 0; transform: translateY(30px); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(245,241,233,0.45);">Drag of the coast, keep scrolling</div>
+      </div>
+      <div data-htrack="true" style="display: flex; gap: 4vw; padding: 0 48px; align-items: center; will-change: transform;">
+        <sc-for list="{{ rooms }}" as="room" hint-placeholder-count="5">
+          <div data-hover="true" data-cursor="View" style="flex: 0 0 auto; width: 40vw; min-width: 480px;">
+            <div style="position: relative; overflow: hidden; aspect-ratio: 4 / 3;">
+              <div data-parallax-x="true" role="img" aria-label="{{ room.name }}" style="position: absolute; inset: 0 -6%; width: 112%; height: 100%; background-image: url('{{ room.img }}'); background-size: cover; background-position: center; filter: grayscale(25%); transition: filter 0.8s ease; will-change: transform;"></div>
+              <div style="position: absolute; top: 20px; left: 20px; font-family: 'Playfair Display', serif; font-size: 15px; color: rgba(245,241,233,0.9); background: rgba(16,22,29,0.45); backdrop-filter: blur(8px); padding: 6px 14px;">{{ room.idx }}</div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 24px; border-bottom: 1px solid rgba(245,241,233,0.16); padding-bottom: 20px;">
+              <div>
+                <div style="font-family: 'Playfair Display', serif; font-size: 28px; color: #F5F1E9;">{{ room.name }}</div>
+                <div style="margin-top: 8px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,241,233,0.5);">{{ room.spec }}</div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,241,233,0.45);">From</div>
+                <div data-accent="text" style="font-family: 'Playfair Display', serif; font-size: 24px; color: #C4A672;">{{ room.price }}</div>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+        <div style="flex: 0 0 auto; width: 24vw; min-width: 300px; display: flex; align-items: center; justify-content: center;">
+          <a href="#find" data-magnetic="true" data-hover="true" style="cursor: none; text-decoration: none; width: 180px; height: 180px; border-radius: 50%; border: 1px solid rgba(196,166,114,0.6); display: flex; align-items: center; justify-content: center; text-align: center; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #F5F1E9; line-height: 1.8;">View all<br></br>rooms</a>
+        </div>
+      </div>
+      <div style="position: absolute; bottom: 56px; left: 48px; right: 48px; height: 1px; background: rgba(245,241,233,0.14);">
+        <div data-hprogress="true" data-accent="bg" style="height: 100%; width: 0%; background: #C4A672;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 03 DINING ===== -->
+  <section id="dine" data-screen-label="Dining" style="position: relative; background: #F5F1E9; padding: 160px 48px;">
+    <div style="max-width: 1440px; margin: 0 auto;">
+      <div data-io="fade" style="opacity: 0; transform: translateY(30px); display: flex; align-items: baseline; gap: 16px; margin-bottom: 64px;">
+        <span data-accent="text" style="font-family: 'Playfair Display', serif; font-size: 15px; color: #C4A672;">03</span>
+        <span style="font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(16,22,29,0.55);">Dine</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1.25fr 1fr; gap: 72px; align-items: center;">
+        <div data-io="fade" data-hover="true" data-cursor="Menu" style="opacity: 0; transform: translateY(30px); position: relative; overflow: hidden; aspect-ratio: 16 / 11;">
+          <img data-parallax="0.14" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=80" alt="Ember and Tide dining room" style="position: absolute; inset: -8% 0; width: 100%; height: 116%; object-fit: cover;"></img>
+          <div style="position: absolute; left: 28px; bottom: 24px; font-family: 'Playfair Display', serif; font-size: clamp(72px, 8vw, 140px); line-height: 1; color: rgba(245,241,233,0.92); mix-blend-mode: screen;">E&amp;S</div>
+        </div>
+        <div>
+          <div style="overflow: hidden;">
+            <h2 data-io="line" style="transform: translateY(110%); margin: 0; font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(36px, 3.6vw, 60px); line-height: 1.1; color: #10161D;">369 Bar<br></br>&amp; Grill<span data-accent="text" style="color: #C4A672;">.</span></h2>
+          </div>
+          <p data-io="fade" style="opacity: 0; transform: translateY(30px); margin: 32px 0 0; font-size: 15px; line-height: 1.8; font-weight: 300; color: rgba(16,22,29,0.7); max-width: 42ch;">Char-grilled Great Southern beef, local catch, and a bar that keeps its own hours of quiet. Warm rooms, open flame, no hurry.</p>
+          <div data-io="fade" style="opacity: 0; transform: translateY(30px); margin-top: 40px; display: flex; flex-direction: column; gap: 0; border-top: 1px solid rgba(16,22,29,0.14);">
+            <div style="display: flex; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid rgba(16,22,29,0.14); font-size: 13px; letter-spacing: 0.08em;"><span style="text-transform: uppercase; letter-spacing: 0.2em; color: rgba(16,22,29,0.5); font-size: 11px;">Breakfast</span><span>6.30 to 10.00</span></div>
+            <div style="display: flex; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid rgba(16,22,29,0.14); font-size: 13px; letter-spacing: 0.08em;"><span style="text-transform: uppercase; letter-spacing: 0.2em; color: rgba(16,22,29,0.5); font-size: 11px;">Dinner</span><span>17.30 to late</span></div>
+            <div style="display: flex; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid rgba(16,22,29,0.14); font-size: 13px; letter-spacing: 0.08em;"><span style="text-transform: uppercase; letter-spacing: 0.2em; color: rgba(16,22,29,0.5); font-size: 11px;">Bar</span><span>All day</span></div>
+          </div>
+          <a href="#find" data-io="fade" data-magnetic="true" data-hover="true" data-underline="true" style="opacity: 0; transform: translateY(30px); cursor: none; text-decoration: none; display: inline-flex; align-items: center; gap: 14px; margin-top: 44px; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #10161D; font-weight: 500;">
+            Reserve a table <span data-accent="text" style="color: #C4A672;">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 04 EXPERIENCES, STICKY STACK ===== -->
+  <div id="experience" data-screen-label="Experiences" style="position: relative;">
+    <sc-for list="{{ experiences }}" as="exp" hint-placeholder-count="4">
+      <section style="position: sticky; top: 0; height: 100vh; overflow: hidden; background: #10161D;">
+        <div role="img" aria-label="{{ exp.name }}" style="position: absolute; inset: 0; background-image: url('{{ exp.img }}'); background-size: cover; background-position: center; filter: brightness(0.8) saturate(0.9);"></div>
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,22,29,0.55) 0%, rgba(16,22,29,0.18) 45%, rgba(16,22,29,0.85) 100%);"></div>
+        <div style="position: absolute; top: 0; left: 48px; right: 48px; padding-top: 120px; display: flex; justify-content: space-between; align-items: baseline;">
+          <div style="display: flex; align-items: baseline; gap: 16px;">
+            <span data-accent="text" style="font-family: 'Playfair Display', serif; font-size: 15px; color: #C4A672;">04</span>
+            <span style="font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(245,241,233,0.7);">Experience Mendocino</span>
+          </div>
+          <span style="font-family: 'Playfair Display', serif; font-size: 15px; color: rgba(245,241,233,0.7);">{{ exp.idx }} / 04</span>
+        </div>
+        <div style="position: absolute; left: 48px; right: 48px; bottom: 64px; display: flex; justify-content: space-between; align-items: flex-end;">
+          <div>
+            <div style="font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(245,241,233,0.65); margin-bottom: 16px;">{{ exp.tag }}</div>
+            <h3 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(44px, 4.6vw, 84px); line-height: 1.05; color: #F5F1E9; max-width: 14ch;">{{ exp.name }}</h3>
+          </div>
+          <p style="margin: 0; max-width: 36ch; font-size: 14px; line-height: 1.75; font-weight: 300; color: rgba(245,241,233,0.95); text-align: right;">{{ exp.copy }}</p>
+        </div>
+      </section>
+    </sc-for>
+  </div>
+
+  <!-- ===== 05 GUESTS, MARQUEE ===== -->
+  <section data-screen-label="Reviews" style="background: #F5F1E9; padding: 150px 0 140px; overflow: hidden;">
+    <div style="padding: 0 48px; max-width: 1440px; margin: 0 auto 72px;">
+      <div data-io="fade" style="opacity: 0; transform: translateY(30px); display: flex; align-items: baseline; gap: 16px;">
+        <span data-accent="text" style="font-family: 'Playfair Display', serif; font-size: 15px; color: #C4A672;">05</span>
+        <span style="font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(16,22,29,0.55);">Guest book</span>
+      </div>
+    </div>
+    <div data-hover="true" style="display: flex; width: max-content; animation: marquee 74s linear infinite;" data-marquee="true">
+      <sc-for list="{{ marqueeQuotes }}" as="q" hint-placeholder-count="10">
+        <div style="flex: 0 0 auto; width: 560px; padding: 0 56px; border-left: 1px solid rgba(16,22,29,0.14);">
+          <div data-accent="text" style="font-family: 'Playfair Display', serif; font-size: 30px; color: #C4A672; line-height: 1;">“</div>
+          <p style="margin: 10px 0 0; font-family: 'Playfair Display', serif; font-size: 22px; line-height: 1.5; color: #10161D;">{{ q.text }}</p>
+          <div style="margin-top: 22px; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(16,22,29,0.5);">{{ q.who }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== 06 FIND US ===== -->
+  <section id="find" data-screen-label="Location" style="position: relative; background: #10161D; color: #F5F1E9; padding: 150px 48px 0;">
+    <div style="max-width: 1440px; margin: 0 auto;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 72px; padding-bottom: 130px;">
+        <div>
+          <div data-io="fade" style="opacity: 0; transform: translateY(30px); display: flex; align-items: baseline; gap: 16px; margin-bottom: 56px;">
+            <span data-accent="text" style="font-family: 'Playfair Display', serif; font-size: 15px; color: #C4A672;">06</span>
+            <span style="font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(245,241,233,0.55);">Find us</span>
+          </div>
+          <div style="overflow: hidden;">
+            <h2 data-io="line" style="transform: translateY(110%); margin: 0; font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(40px, 4vw, 68px); line-height: 1.1;">45050 Main Street<span data-accent="text" style="color: #C4A672;">.</span></h2>
+          </div>
+          <p data-io="fade" style="opacity: 0; transform: translateY(30px); margin: 28px 0 0; font-size: 15px; line-height: 1.8; font-weight: 300; color: rgba(245,241,233,0.7); max-width: 40ch;">Ten minutes from the village centre, six from Van Damme Beach. Complimentary parking on site, tour desk in the lobby.</p>
+          <div data-io="fade" style="opacity: 0; transform: translateY(30px); margin-top: 56px; display: flex; flex-direction: column; gap: 0; max-width: 420px;">
+            <a href="tel:+17075550142" data-hover="true" data-underline="true" style="cursor: none; text-decoration: none; color: #F5F1E9; display: flex; justify-content: space-between; padding: 20px 0; border-top: 1px solid rgba(245,241,233,0.16); font-size: 14px; letter-spacing: 0.06em;"><span style="font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(245,241,233,0.5);">Reservations</span><span>(707) 555 0142</span></a>
+            <a href="mailto:reception@halyardhouse.com" data-hover="true" data-underline="true" style="cursor: none; text-decoration: none; color: #F5F1E9; display: flex; justify-content: space-between; padding: 20px 0; border-top: 1px solid rgba(245,241,233,0.16); border-bottom: 1px solid rgba(245,241,233,0.16); font-size: 14px; letter-spacing: 0.06em;"><span style="font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(245,241,233,0.5);">Email</span><span>reception@halyardhouse.com</span></a>
+          </div>
+          <a href="Halyard House Booking.dc.html" data-io="fade" data-magnetic="true" data-hover="true" data-accent="btn" style="opacity: 0; transform: translateY(30px); cursor: none; text-decoration: none; display: inline-block; margin-top: 56px; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #10161D; background: #C4A672; padding: 20px 44px; border-radius: 999px; font-weight: 500;">Book your stay</a>
+        </div>
+        <div data-io="fade" data-hover="true" data-cursor="Map" style="opacity: 0; transform: translateY(30px); position: relative; overflow: hidden; min-height: 520px;">
+          <img data-parallax="0.1" src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1600&q=80" alt="Mendocino coast aerial" style="position: absolute; inset: -8% 0; width: 100%; height: 116%; object-fit: cover; filter: grayscale(45%) brightness(0.85);"></img>
+          <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+            <div style="position: relative; width: 150px; height: 150px; animation: spinSlow 36s linear infinite;">
+              <svg viewBox="0 0 150 150" style="position: absolute; inset: 0; width: 100%; height: 100%;">
+                <defs><path id="circ" d="M 75,75 m -58,0 a 58,58 0 1,1 116,0 a 58,58 0 1,1 -116,0"></path></defs>
+                <text style="font-size: 11.5px; letter-spacing: 0.32em; text-transform: uppercase; fill: #F5F1E9; font-family: 'Archivo', sans-serif;"><textPath href="#circ">39.31° N · 123.80° W · Mendocino CA · </textPath></text>
+              </svg>
+              <span data-accent="bg" style="position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; margin: -4px; border-radius: 50%; background: #C4A672;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer style="border-top: 1px solid rgba(245,241,233,0.14); padding: 72px 0 0;">
+        <div style="display: flex; justify-content: space-between; gap: 48px; padding-bottom: 88px;">
+          <div style="max-width: 260px;">
+            <div style="font-family: 'Playfair Display', serif; font-size: 22px;">Halyard<span data-accent="text" style="color: #C4A672;">.</span></div>
+            <p style="margin: 16px 0 0; font-size: 13px; line-height: 1.7; font-weight: 300; color: rgba(245,241,233,0.55);">Halyard House<br></br>45050 Main Street<br></br>Mendocino, California</p>
+          </div>
+          <div style="display: flex; gap: 96px;">
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <span style="font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(245,241,233,0.4); margin-bottom: 6px;">Hotel</span>
+              <a href="#stay" data-hover="true" data-underline="true" style="cursor: none; text-decoration: none; color: rgba(245,241,233,0.8); font-size: 13px;">Rooms &amp; suites</a>
+              <a href="#dine" data-hover="true" data-underline="true" style="cursor: none; text-decoration: none; color: rgba(245,241,233,0.8); font-size: 13px;">Ember &amp; Tide</a>
+              <a href="#experience" data-hover="true" data-underline="true" style="cursor: none; text-decoration: none; color: rgba(245,241,233,0.8); font-size: 13px;">Experiences</a>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <span style="font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(245,241,233,0.4); margin-bottom: 6px;">Guests</span>
+              <a href="#find" data-hover="true" data-underline="true" style="cursor: none; text-decoration: none; color: rgba(245,241,233,0.8); font-size: 13px;">Reservations</a>
+              <a href="#find" data-hover="true" data-underline="true" style="cursor: none; text-decoration: none; color: rgba(245,241,233,0.8); font-size: 13px;">Gift vouchers</a>
+              <a href="#find" data-hover="true" data-underline="true" style="cursor: none; text-decoration: none; color: rgba(245,241,233,0.8); font-size: 13px;">Contact</a>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <span style="font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(245,241,233,0.4); margin-bottom: 6px;">Follow</span>
+              <a href="#top" data-hover="true" data-underline="true" style="cursor: none; text-decoration: none; color: rgba(245,241,233,0.8); font-size: 13px;">Instagram</a>
+              <a href="#top" data-hover="true" data-underline="true" style="cursor: none; text-decoration: none; color: rgba(245,241,233,0.8); font-size: 13px;">Facebook</a>
+            </div>
+          </div>
+        </div>
+        <div style="overflow: hidden; line-height: 0.78; text-align: center;">
+          <div data-io="line" style="transform: translateY(105%); font-family: 'Playfair Display', serif; font-size: clamp(120px, 17.5vw, 330px); color: rgba(245,241,233,0.96); letter-spacing: 0.01em; user-select: none;">Halyard</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 28px 0 32px; border-top: 1px solid rgba(245,241,233,0.12); margin-top: -6px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,241,233,0.4);">
+          <span>© 2026 Halyard House</span>
+          <span>Privacy · Careers</span>
+        </div>
+      </footer>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C4A672&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#C4A672&quot;,&quot;#B08D57&quot;,&quot;#9AA588&quot;,&quot;#A8896B&quot;],&quot;section&quot;:&quot;Brand&quot;},&quot;showPreloader&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const rooms = [
+      { idx: "No. 01", name: "Standard Room", spec: "Queen · 2 guests · 20 m²", price: "$149", img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1600&q=80" },
+      { idx: "No. 02", name: "Standard Twin", spec: "2 × Single · 2 guests · 21 m²", price: "$159", img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80" },
+      { idx: "No. 03", name: "Deluxe Room", spec: "King · 2 guests · 26 m²", price: "$189", img: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1600&q=80" },
+      { idx: "No. 04", name: "Family Room", spec: "Queen + bunks · 4 guests · 30 m²", price: "$219", img: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1600&q=80" },
+      { idx: "No. 05", name: "Deluxe Family Suite", spec: "Two rooms · 5 guests · 42 m²", price: "$269", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80" },
+    ];
+    const experiences = [
+      { idx: "01", tag: "Mendocino Headlands · Dec to Apr", name: "Whales off the Headlands", copy: "Gray whales pass close to shore each winter on their migration south. The best viewing point is a ten minute walk from the lobby.", img: "https://images.unsplash.com/photo-1518877593221-1f28583780b4?auto=format&fit=crop&w=2200&q=80" },
+      { idx: "02", tag: "Mendocino Headlands · 10 min", name: "The Gap & Natural Bridge", copy: "Wave-cut coves and sea arches where the Pacific has carved its own architecture. Go at golden hour.", img: "https://images.unsplash.com/photo-1439405326854-014607f694d7?auto=format&fit=crop&w=2200&q=80" },
+      { idx: "03", tag: "Anderson Valley · 45 min", name: "Wineries of the valley", copy: "Cool-climate pinot and riesling under the redwoods. We'll arrange the driver.", img: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=2200&q=80" },
+      { idx: "04", tag: "Van Damme Beach · 6 min", name: "Mornings at Van Damme", copy: "A walk before breakfast, the trail to Fern Canyon after. The quiet kind of routine holidays are for.", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=80" },
+    ];
+    const quotes = [
+      { text: "The quietest sleep we've had on the whole south coast trip.", who: "Sacramento, March" },
+      { text: "Dinner at Ember &amp; Tide twice in three nights. The grill is worth the stay alone.", who: "San Francisco, January" },
+      { text: "Walked to the beach every morning. Staff arranged the whale cruise for us.", who: "Portland, July" },
+      { text: "Feels far more considered than the price suggests.", who: "Seattle, October" },
+      { text: "The kids had their own room, we had our own quiet. Perfect.", who: "Sonoma, April" },
+    ];
+    return { rooms, experiences, marqueeQuotes: quotes.concat(quotes) };
+  }
+
+  componentDidMount() {
+    this._cleanup = [];
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    this._reduced = reduced;
+    // Wait a tick for template DOM
+    this._raf = requestAnimationFrame(() => this.initAll(reduced));
+    this.applyAccent();
+  }
+
+  componentDidUpdate() { this.applyAccent(); }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    (this._cleanup || []).forEach((fn) => { try { fn(); } catch (e) {} });
+  }
+
+  applyAccent() {
+    const accent = this.props.accent || "#C4A672";
+    document.querySelectorAll("[data-accent]").forEach((el) => {
+      const kind = el.getAttribute("data-accent");
+      if (kind === "text") el.style.color = accent;
+      if (kind === "bg") el.style.background = accent;
+      if (kind === "btn") el.style.background = accent;
+    });
+  }
+
+  on(target, ev, fn, opts) {
+    target.addEventListener(ev, fn, opts);
+    this._cleanup.push(() => target.removeEventListener(ev, fn, opts));
+  }
+
+  initAll(reduced) {
+    this.initPreloader(reduced);
+    this.initNav();
+    this.initCursor();
+    this.initMagnetic();
+    this.initReveals(reduced);
+    this.initCounters(reduced);
+    this.initScrollEngine(reduced);
+    this.initUnderlines();
+    this.initImageHovers();
+  }
+
+  q(sel) { return document.querySelector(sel); }
+  qa(sel) { return Array.from(document.querySelectorAll(sel)); }
+
+  initPreloader(reduced) {
+    const pre = this.q("[data-pre]");
+    if (!pre) return;
+    const show = (this.props.showPreloader ?? true) && !reduced;
+    const finish = () => {
+      pre.style.transform = "translateY(-100%)";
+      document.documentElement.style.overflow = "";
+      setTimeout(() => { pre.style.display = "none"; }, 1200);
+      this.revealHero(reduced);
+    };
+    if (!show) { pre.style.display = "none"; this.revealHero(true); return; }
+    document.documentElement.style.overflow = "hidden";
+    window.scrollTo(0, 0);
+    const word = this.q("[data-pre-word]"), sub = this.q("[data-pre-sub]");
+    const count = this.q("[data-pre-count]"), bar = this.q("[data-pre-bar]");
+    setTimeout(() => { if (word) word.style.transform = "translateY(0)"; if (sub) sub.style.transform = "translateY(0)"; }, 150);
+    let n = 0;
+    const t0 = performance.now(), dur = 2600;
+    const tick = (now) => {
+      const p = Math.min(1, (now - t0) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      n = Math.round(eased * 100);
+      if (count) count.textContent = String(n);
+      if (bar) bar.style.width = n + "%";
+      if (p < 1) requestAnimationFrame(tick);
+      else setTimeout(finish, 500);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  revealHero(instant) {
+    const media = this.q("[data-hero-media]");
+    if (media) media.style.opacity = "1";
+    this.qa("[data-hero-line]").forEach((el) => {
+      if (instant) { el.style.transition = "none"; }
+      el.style.transform = "translateY(0)";
+      el.style.opacity = "1";
+    });
+    const nav = this.q("[data-nav]");
+    if (nav) {
+      nav.style.transition = "background 0.5s, backdrop-filter 0.5s, border-color 0.5s, opacity 1s ease 0.5s, transform 1s cubic-bezier(0.16,1,0.3,1) 0.5s";
+      nav.style.opacity = "1";
+      nav.style.transform = "translateY(0)";
+    }
+  }
+
+  initNav() {
+    const nav = this.q("[data-nav]");
+    if (!nav) return;
+    const logo = this.q("[data-nav-logo]"), logosub = this.q("[data-nav-logosub]");
+    const links = this.qa("[data-navlink]");
+    const onScroll = () => {
+      const dark = window.scrollY > window.innerHeight * 0.75;
+      // Determine section under nav: rooms + experiences + find are dark; manifesto/dining/reviews ivory
+      const y = window.scrollY + 40;
+      let onLight = false;
+      this.qa("[data-screen-label='Manifesto'], [data-screen-label='Dining'], [data-screen-label='Reviews']").forEach((s) => {
+        const r = s.getBoundingClientRect();
+        if (r.top < 60 && r.bottom > 60) onLight = true;
+      });
+      nav.style.background = window.scrollY > 40 ? (onLight ? "rgba(245,241,233,0.75)" : "rgba(16,22,29,0.55)") : "transparent";
+      nav.style.backdropFilter = window.scrollY > 40 ? "blur(14px)" : "none";
+      nav.style.borderColor = window.scrollY > 40 ? (onLight ? "rgba(16,22,29,0.1)" : "rgba(245,241,233,0.1)") : "transparent";
+      const fg = onLight ? "#10161D" : "#F5F1E9";
+      const fgDim = onLight ? "rgba(16,22,29,0.75)" : "rgba(245,241,233,0.85)";
+      if (logo) logo.style.color = fg;
+      if (logosub) logosub.style.color = onLight ? "rgba(16,22,29,0.55)" : "rgba(245,241,233,0.6)";
+      links.forEach((a) => { a.style.color = fgDim; });
+    };
+    this.on(window, "scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
+  initCursor() {
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      const root = this.q("[data-root]");
+      if (root) root.style.cursor = "auto";
+      return;
+    }
+    const dot = this.q("[data-cursor-dot]"), ring = this.q("[data-cursor-ring]"), label = this.q("[data-cursor-label]");
+    if (!dot || !ring) return;
+    let mx = -100, my = -100, rx = -100, ry = -100, visible = false, running = true;
+    const onMove = (e) => {
+      mx = e.clientX; my = e.clientY;
+      if (!visible) { visible = true; dot.style.opacity = "1"; ring.style.opacity = "1"; }
+    };
+    this.on(window, "mousemove", onMove, { passive: true });
+    const loop = () => {
+      if (!running) return;
+      rx += (mx - rx) * 0.09; ry += (my - ry) * 0.09;
+      dot.style.transform = `translate(${mx}px, ${my}px)`;
+      ring.style.transform = `translate(${rx}px, ${ry}px)`;
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+    this._cleanup.push(() => { running = false; });
+    // hover states
+    const setHover = (mode, text) => {
+      if (mode === "label") {
+        ring.style.width = "88px"; ring.style.height = "88px"; ring.style.margin = "-44px 0 0 -44px";
+        ring.style.background = "rgba(196,166,114,0.92)"; ring.style.borderColor = "transparent";
+        if (label) { label.textContent = text; label.style.opacity = "1"; }
+        dot.style.opacity = "0";
+      } else if (mode === "link") {
+        ring.style.width = "56px"; ring.style.height = "56px"; ring.style.margin = "-28px 0 0 -28px";
+        ring.style.background = "transparent"; ring.style.borderColor = "rgba(196,166,114,0.85)";
+        if (label) label.style.opacity = "0";
+        dot.style.opacity = "1";
+      } else {
+        ring.style.width = "40px"; ring.style.height = "40px"; ring.style.margin = "-20px 0 0 -20px";
+        ring.style.background = "transparent"; ring.style.borderColor = "rgba(196,166,114,0.85)";
+        if (label) label.style.opacity = "0";
+        dot.style.opacity = "1";
+      }
+    };
+    this.qa("[data-hover]").forEach((el) => {
+      const cursorText = el.getAttribute("data-cursor");
+      this.on(el, "mouseenter", () => setHover(cursorText ? "label" : "link", cursorText || ""));
+      this.on(el, "mouseleave", () => setHover("none"));
+    });
+  }
+
+  initMagnetic() {
+    if (this._reduced) return;
+    this.qa("[data-magnetic]").forEach((el) => {
+      el.style.transition = "transform 0.65s cubic-bezier(0.16,1,0.3,1)";
+      this.on(el, "mousemove", (e) => {
+        const r = el.getBoundingClientRect();
+        const dx = e.clientX - (r.left + r.width / 2);
+        const dy = e.clientY - (r.top + r.height / 2);
+        el.style.transform = `translate(${dx * 0.28}px, ${dy * 0.28}px)`;
+      });
+      this.on(el, "mouseleave", () => { el.style.transform = "translate(0, 0)"; });
+    });
+  }
+
+  initReveals(reduced) {
+    // word-split paragraphs
+    this.qa("[data-words]").forEach((el) => {
+      const words = el.textContent.split(/\s+/).filter(Boolean);
+      el.textContent = "";
+      words.forEach((w, i) => {
+        const outer = document.createElement("span");
+        outer.style.cssText = "display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:0.12em;margin-bottom:-0.12em;";
+        const inner = document.createElement("span");
+        inner.textContent = w;
+        inner.style.cssText = `display:inline-block;transform:translateY(110%);transition:transform 1.4s cubic-bezier(0.16,1,0.3,1) ${i * 0.045}s;`;
+        outer.appendChild(inner);
+        el.appendChild(outer);
+        el.appendChild(document.createTextNode(" "));
+      });
+      el._innerWords = Array.from(el.querySelectorAll("span > span"));
+    });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        const el = en.target._revealTarget || en.target;
+        const kind = el.getAttribute("data-io");
+        if (el.hasAttribute("data-words")) {
+          (el._innerWords || []).forEach((s) => { s.style.transform = "translateY(0)"; });
+        } else if (kind === "line") {
+          el.style.transition = "transform 1.6s cubic-bezier(0.16,1,0.3,1)";
+          el.style.transform = "translateY(0)";
+        } else {
+          el.style.transition = "opacity 1.5s ease, transform 1.5s cubic-bezier(0.16,1,0.3,1)";
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+        }
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.18 });
+    this.qa("[data-io], [data-words]").forEach((el) => {
+      if (reduced) {
+        el.style.transition = "none"; el.style.opacity = "1"; el.style.transform = "none";
+        (el._innerWords || []).forEach((s) => { s.style.transition = "none"; s.style.transform = "none"; });
+        return;
+      }
+      // "line" reveals start 100% clipped inside overflow:hidden wrappers, so IO
+      // reports zero intersection for the element itself, observe the wrapper.
+      if (el.getAttribute("data-io") === "line" && el.parentElement) {
+        el.parentElement._revealTarget = el;
+        io.observe(el.parentElement);
+      } else {
+        io.observe(el);
+      }
+    });
+    this._cleanup.push(() => io.disconnect());
+  }
+
+  initCounters(reduced) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        const el = en.target;
+        io.unobserve(el);
+        const target = parseFloat(el.getAttribute("data-count"));
+        const dec = parseInt(el.getAttribute("data-decimals") || "0", 10);
+        if (reduced) { el.textContent = target.toFixed(dec); return; }
+        const t0 = performance.now(), dur = 2300;
+        const tick = (now) => {
+          const p = Math.min(1, (now - t0) / dur);
+          const eased = 1 - Math.pow(1 - p, 4);
+          el.textContent = (target * eased).toFixed(dec);
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.6 });
+    this.qa("[data-count]").forEach((el) => io.observe(el));
+    this._cleanup.push(() => io.disconnect());
+  }
+
+  initScrollEngine(reduced) {
+    const wrap = this.q("[data-hwrap]");
+    const track = this.q("[data-htrack]");
+    const progress = this.q("[data-hprogress]");
+    const parallaxEls = this.qa("[data-parallax]");
+    const cardImgs = this.qa("[data-parallax-x]");
+    let cur = 0, rafActive = false, stopped = false;
+    const frame = () => {
+      if (stopped) { rafActive = false; return; }
+      let settled = true;
+      const vh = window.innerHeight, vw = window.innerWidth;
+      if (wrap && track) {
+        // Batch reads first, then writes
+        const r = wrap.getBoundingClientRect();
+        const total = Math.max(1, r.height - vh);
+        const p = Math.min(1, Math.max(0, -r.top / total));
+        const maxX = Math.max(0, track.scrollWidth - vw + 96);
+        const target = p * maxX;
+        cur += (target - cur) * (reduced ? 1 : 0.12);
+        if (Math.abs(target - cur) > 0.5) settled = false; else cur = target;
+        const inView = r.bottom > 0 && r.top < vh;
+        const cardRects = inView ? cardImgs.map((el) => el.getBoundingClientRect()) : null;
+        track.style.transform = `translateX(${-cur}px)`;
+        if (progress) progress.style.width = (p * 100) + "%";
+        if (cardRects) {
+          cardImgs.forEach((el, i) => {
+            const ir = cardRects[i];
+            const center = (ir.left + ir.width / 2 - vw / 2) / vw;
+            el.style.transform = `translateX(${center * 26}px)`;
+          });
+        }
+      }
+      if (!reduced) {
+        const rects = parallaxEls.map((img) => img.parentElement.getBoundingClientRect());
+        parallaxEls.forEach((img, i) => {
+          const r2 = rects[i];
+          if (r2.bottom < 0 || r2.top > vh) return;
+          const speed = parseFloat(img.getAttribute("data-parallax"));
+          const rel = (r2.top + r2.height / 2 - vh / 2) / vh;
+          img.style.transform = `translateY(${rel * speed * -220}px)`;
+        });
+      }
+      if (settled) { rafActive = false; return; }
+      requestAnimationFrame(frame);
+    };
+    const kick = () => { if (!rafActive && !stopped) { rafActive = true; requestAnimationFrame(frame); } };
+    this.on(window, "scroll", kick, { passive: true });
+    this.on(window, "resize", kick, { passive: true });
+    kick();
+    this._cleanup.push(() => { stopped = true; });
+  }
+
+  initUnderlines() {
+    this.qa("[data-underline]").forEach((a) => {
+      const line = document.createElement("span");
+      const dark = a.closest("[data-screen-label='Dining'], [data-screen-label='Manifesto'], [data-screen-label='Reviews']");
+      line.style.cssText = `position:absolute;left:0;bottom:-3px;height:1px;width:100%;background:${this.props.accent || "#C4A672"};transform:scaleX(0);transform-origin:right;transition:transform 0.65s cubic-bezier(0.16,1,0.3,1);`;
+      a.style.position = "relative";
+      a.appendChild(line);
+      this.on(a, "mouseenter", () => { line.style.transformOrigin = "left"; line.style.transform = "scaleX(1)"; });
+      this.on(a, "mouseleave", () => { line.style.transformOrigin = "right"; line.style.transform = "scaleX(0)"; });
+    });
+  }
+
+  initImageHovers() {
+    this.qa("[data-cursor]").forEach((box) => {
+      const img = box.querySelector("img, [role='img']");
+      if (!img) return;
+      img.style.transition = "filter 1.2s ease, scale 1.3s cubic-bezier(0.16,1,0.3,1)";
+      this.on(box, "mouseenter", () => { img.style.filter = "grayscale(0%)"; img.style.scale = "1.045"; });
+      this.on(box, "mouseleave", () => { img.style.filter = ""; img.style.scale = "1"; });
+    });
+  }
+}
+</script>
+</body>
+</html>

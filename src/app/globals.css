@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+:root {
+  --color-ink: #10161d;
+  --color-ivory: #f5f1e9;
+  --color-gold: #c4a672;
+  --color-error: #a6432e;
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-ivory: var(--color-ivory);
+  --color-gold: var(--color-gold);
+  --color-error: var(--color-error);
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-archivo), Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-ivory);
+  overscroll-behavior: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gold) var(--color-ink);
+}
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1.14);
+  }
+}
+
+@keyframes kenburns-slow {
+  0% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1.16);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollcue {
+  0% {
+    transform: translateY(-100%);
+  }
+  55% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes check-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
+}
