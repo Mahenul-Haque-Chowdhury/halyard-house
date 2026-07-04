@@ -81,12 +81,12 @@ export default function BookingPage() {
     return (
       <div className="bg-ivory text-ink font-sans min-h-screen flex flex-col">
         <TopNav />
-        <main className="flex-1 flex items-start justify-center px-12 pt-22 pb-30">
+        <main className="flex-1 flex items-start justify-center px-5 sm:px-8 lg:px-12 pt-14 sm:pt-18 lg:pt-22 pb-16 sm:pb-24 lg:pb-30">
           <div
             className="w-full max-w-[720px] text-center"
             style={{ animation: "pop-in 0.7s cubic-bezier(0.16,1,0.3,1)" }}
           >
-            <svg width="76" height="76" viewBox="0 0 72 72" className="mb-9 mx-auto">
+            <svg width="60" height="60" viewBox="0 0 72 72" className="mb-6 sm:mb-9 mx-auto sm:w-[76px] sm:h-[76px]">
               <circle cx="36" cy="36" r="34" fill="none" stroke="#C4A672" strokeWidth="1.2" />
               <path
                 d="M20 37 L31 48 L52 24"
@@ -100,21 +100,21 @@ export default function BookingPage() {
                 style={{ animation: "check-draw 0.7s ease 0.3s forwards" }}
               />
             </svg>
-            <div className="text-[11px] tracking-[0.3em] uppercase text-[rgba(16,22,29,0.5)] mb-4.5">
+            <div className="text-[10px] sm:text-[11px] tracking-[0.28em] sm:tracking-[0.3em] uppercase text-[rgba(16,22,29,0.5)] mb-3.5 sm:mb-4.5">
               Booking confirmed
             </div>
-            <h1 className="m-0 mb-5.5 font-serif font-normal text-[clamp(36px,4vw,56px)] text-ink">
+            <h1 className="m-0 mb-4 sm:mb-5.5 font-serif font-normal text-[clamp(28px,8vw,56px)] text-ink">
               See you soon, {firstName}.
             </h1>
-            <p className="mx-auto mb-13 max-w-[46ch] text-[15px] leading-[1.75] text-[rgba(16,22,29,0.62)] font-light">
+            <p className="mx-auto mb-8 sm:mb-13 max-w-[46ch] text-sm sm:text-[15px] leading-[1.7] sm:leading-[1.75] text-[rgba(16,22,29,0.62)] font-light">
               A confirmation has been sent to {state.guestEmail}. Your reference is{" "}
               <strong className="text-ink tracking-[0.04em]">{state.bookingRef}</strong>.
             </p>
-            <div className="inline-block text-left bg-ink text-ivory px-13 py-11 min-w-[400px]">
+            <div className="block sm:inline-block text-left bg-ink text-ivory px-7 sm:px-13 py-8 sm:py-11 w-full sm:w-auto sm:min-w-[400px]">
               <div className="text-[10px] tracking-[0.28em] uppercase text-[rgba(196,166,114,0.9)] mb-2.5">
                 {roomIdx}
               </div>
-              <div className="font-serif text-2xl mb-5.5">{room?.name}</div>
+              <div className="font-serif text-xl sm:text-2xl mb-4 sm:mb-5.5">{room?.name}</div>
               <div className="flex justify-between py-3 border-t border-[rgba(245,241,233,0.16)] text-[13px]">
                 <span className="text-[rgba(245,241,233,0.55)]">Dates</span>
                 <span>
@@ -125,12 +125,12 @@ export default function BookingPage() {
                 <span className="text-[rgba(245,241,233,0.55)]">Guests</span>
                 <span>{state.guests}</span>
               </div>
-              <div className="flex justify-between py-4 pt-4 mt-2.5 border-t border-[rgba(196,166,114,0.5)] font-serif text-[25px]">
+              <div className="flex justify-between py-4 pt-4 mt-2.5 border-t border-[rgba(196,166,114,0.5)] font-serif text-xl sm:text-[25px]">
                 <span>Paid</span>
                 <span className="text-gold">${grandTotal}</span>
               </div>
             </div>
-            <div className="mt-13">
+            <div className="mt-9 sm:mt-13">
               <Link href="/" className="no-underline text-xs tracking-[0.24em] uppercase text-ink border-b border-gold pb-1.5">
                 Return to Halyard House
               </Link>
@@ -146,7 +146,7 @@ export default function BookingPage() {
       <TopNav />
       <main className="flex-1 flex items-stretch min-h-0 flex-col lg:flex-row">
         {/* LEFT PANEL */}
-        <div className="w-full lg:w-[42%] lg:sticky lg:top-0 h-[42vh] lg:h-[calc(100vh-65px)] overflow-hidden bg-ink flex-shrink-0 relative">
+        <div className="w-full lg:w-[42%] lg:sticky lg:top-0 h-[34vh] sm:h-[38vh] lg:h-[calc(100vh-65px)] overflow-hidden bg-ink flex-shrink-0 relative">
           <div
             key={stepForPanel}
             className="absolute inset-0"
@@ -168,15 +168,15 @@ export default function BookingPage() {
               }}
             />
           </div>
-          <div className="absolute left-11 right-11 bottom-12">
-            <div className="text-[11px] tracking-[0.3em] uppercase text-[rgba(196,166,114,0.92)] mb-4.5">
+          <div className="absolute left-5 right-5 sm:left-8 lg:left-11 sm:right-8 lg:right-11 bottom-6 sm:bottom-8 lg:bottom-12">
+            <div className="text-[10px] sm:text-[11px] tracking-[0.26em] sm:tracking-[0.3em] uppercase text-[rgba(196,166,114,0.92)] mb-2.5 sm:mb-4.5">
               {panel.eyebrow}
             </div>
-            <div className="font-serif font-normal text-[clamp(28px,2.6vw,40px)] leading-[1.2] text-ivory">
+            <div className="font-serif font-normal text-[clamp(22px,5.5vw,40px)] leading-[1.2] text-ivory">
               {panel.caption}
             </div>
             {hasSummary && (
-              <div className="mt-10 pt-7 border-t border-[rgba(245,241,233,0.18)]">
+              <div className="hidden sm:block mt-6 lg:mt-10 pt-5 lg:pt-7 border-t border-[rgba(245,241,233,0.18)]">
                 <div className="flex justify-between text-[13px] text-[rgba(245,241,233,0.65)] mb-2.5">
                   <span>
                     {n} nights, {state.guests} guests
@@ -197,9 +197,9 @@ export default function BookingPage() {
         </div>
 
         {/* RIGHT PANEL */}
-        <div className="w-full lg:w-[58%] px-6 sm:px-12 lg:px-16 pt-14 pb-30">
+        <div className="w-full lg:w-[58%] px-5 sm:px-8 lg:px-16 pt-8 sm:pt-10 lg:pt-14 pb-16 sm:pb-20 lg:pb-30">
           {/* PROGRESS */}
-          <div className="max-w-[620px] mb-14">
+          <div className="max-w-[620px] mb-8 sm:mb-10 lg:mb-14">
             <div className="flex items-center justify-between">
               {STEP_LABELS.map((label, i) => {
                 const num = i + 1;
@@ -210,23 +210,23 @@ export default function BookingPage() {
                 const dotText = done || active ? "#F5F1E9" : "rgba(16,22,29,0.4)";
                 const hasLine = num < STEP_LABELS.length;
                 return (
-                  <div key={label} className="flex items-center gap-3 flex-1">
-                    <div className="flex flex-col items-center gap-2 min-w-[22px]">
+                  <div key={label} className="flex items-center gap-1.5 sm:gap-3 flex-1">
+                    <div className="flex flex-col items-center gap-1.5 sm:gap-2 min-w-[18px] sm:min-w-[22px]">
                       <div
-                        className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-serif transition-all duration-500"
+                        className="w-6.5 h-6.5 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-serif transition-all duration-500"
                         style={{ border: `1px solid ${dotBorder}`, background: dotColor, color: dotText }}
                       >
                         {done ? "✓" : num}
                       </div>
                       <div
-                        className="text-[9.5px] tracking-[0.14em] uppercase whitespace-nowrap"
+                        className="hidden sm:block text-[9.5px] tracking-[0.14em] uppercase whitespace-nowrap"
                         style={{ color: active ? "#10161D" : "rgba(16,22,29,0.4)" }}
                       >
                         {label}
                       </div>
                     </div>
                     {hasLine && (
-                      <div className="flex-1 h-px bg-[rgba(16,22,29,0.14)] mb-5 relative overflow-hidden">
+                      <div className="flex-1 h-px bg-[rgba(16,22,29,0.14)] mb-0 sm:mb-5 relative overflow-hidden">
                         <div
                           className="absolute inset-0 bg-gold origin-left transition-transform duration-[0.9s] ease-[cubic-bezier(0.16,1,0.3,1)]"
                           style={{ transform: `scaleX(${done ? 1 : 0})` }}
@@ -236,6 +236,9 @@ export default function BookingPage() {
                   </div>
                 );
               })}
+            </div>
+            <div className="sm:hidden mt-2.5 text-center text-[9.5px] tracking-[0.14em] uppercase text-ink">
+              {STEP_LABELS[state.step - 1]}
             </div>
           </div>
 
@@ -249,24 +252,24 @@ export default function BookingPage() {
                     <button
                       type="button"
                       onClick={() => dispatch({ type: "OPEN_CAL", which: "in" })}
-                      className="text-left cursor-pointer border-none px-5.5 py-5"
+                      className="text-left cursor-pointer border-none px-3.5 sm:px-5.5 py-4 sm:py-5"
                       style={{ background: state.calOpen === "in" ? "rgba(196,166,114,0.12)" : "#FFFFFF" }}
                     >
-                      <div className="text-[10.5px] tracking-[0.2em] uppercase text-[rgba(16,22,29,0.48)]">
+                      <div className="text-[9.5px] sm:text-[10.5px] tracking-[0.18em] sm:tracking-[0.2em] uppercase text-[rgba(16,22,29,0.48)]">
                         Check in
                       </div>
-                      <div className="mt-2 font-serif text-[22px] text-ink">{fmtDate(state.checkIn)}</div>
+                      <div className="mt-1.5 sm:mt-2 font-serif text-lg sm:text-[22px] text-ink">{fmtDate(state.checkIn)}</div>
                     </button>
                     <button
                       type="button"
                       onClick={() => dispatch({ type: "OPEN_CAL", which: "out" })}
-                      className="text-left cursor-pointer border-none px-5.5 py-5"
+                      className="text-left cursor-pointer border-none px-3.5 sm:px-5.5 py-4 sm:py-5"
                       style={{ background: state.calOpen === "out" ? "rgba(196,166,114,0.12)" : "#FFFFFF" }}
                     >
-                      <div className="text-[10.5px] tracking-[0.2em] uppercase text-[rgba(16,22,29,0.48)]">
+                      <div className="text-[9.5px] sm:text-[10.5px] tracking-[0.18em] sm:tracking-[0.2em] uppercase text-[rgba(16,22,29,0.48)]">
                         Check out
                       </div>
-                      <div className="mt-2 font-serif text-[22px] text-ink">{fmtDate(state.checkOut)}</div>
+                      <div className="mt-1.5 sm:mt-2 font-serif text-lg sm:text-[22px] text-ink">{fmtDate(state.checkOut)}</div>
                     </button>
                   </div>
 
@@ -282,16 +285,16 @@ export default function BookingPage() {
                   )}
                 </div>
 
-                <div className="flex items-center justify-between py-6.5 border-b border-[rgba(16,22,29,0.14)] mt-8">
+                <div className="flex items-center justify-between py-5 sm:py-6.5 border-b border-[rgba(16,22,29,0.14)] mt-6 sm:mt-8">
                   <div>
-                    <div className="text-[15px] text-ink">Guests</div>
+                    <div className="text-sm sm:text-[15px] text-ink">Guests</div>
                     <div className="text-xs text-[rgba(16,22,29,0.48)] mt-1">{n} night stay</div>
                   </div>
-                  <div className="flex items-center gap-5.5">
+                  <div className="flex items-center gap-4 sm:gap-5.5">
                     <button
                       type="button"
                       onClick={() => dispatch({ type: "DEC_GUESTS" })}
-                      className="w-8.5 h-8.5 rounded-full border border-[rgba(16,22,29,0.22)] bg-transparent text-base text-ink cursor-pointer transition-colors"
+                      className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full border border-[rgba(16,22,29,0.22)] bg-transparent text-base text-ink cursor-pointer transition-colors"
                     >
                       &minus;
                     </button>
@@ -299,7 +302,7 @@ export default function BookingPage() {
                     <button
                       type="button"
                       onClick={() => dispatch({ type: "INC_GUESTS" })}
-                      className="w-8.5 h-8.5 rounded-full border border-[rgba(16,22,29,0.22)] bg-transparent text-base text-ink cursor-pointer transition-colors"
+                      className="w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full border border-[rgba(16,22,29,0.22)] bg-transparent text-base text-ink cursor-pointer transition-colors"
                     >
                       +
                     </button>
@@ -311,7 +314,7 @@ export default function BookingPage() {
                 <button
                   type="button"
                   onClick={goToRooms}
-                  className="mt-10 cursor-pointer border-none inline-block text-xs tracking-[0.24em] uppercase text-ink bg-gold px-11.5 py-4.75 font-medium transition-transform"
+                  className="mt-8 sm:mt-10 cursor-pointer border-none w-full sm:w-auto inline-flex sm:inline-block items-center justify-center text-xs tracking-[0.24em] uppercase text-ink bg-gold px-11.5 py-4 sm:py-4.75 font-medium transition-transform"
                 >
                   Check availability &rarr;
                 </button>
@@ -334,35 +337,35 @@ export default function BookingPage() {
                   </button>
                 </div>
 
-                <div className="flex flex-col gap-3.5">
+                <div className="flex flex-col gap-3 sm:gap-3.5">
                   {ROOMS.map((r) => {
                     const selected = state.selectedRoomId === r.id;
                     return (
                       <div
                         key={r.id}
                         onClick={() => dispatch({ type: "SELECT_ROOM", id: r.id })}
-                        className="flex items-center cursor-pointer p-3.5 relative transition-all"
+                        className="flex flex-col sm:flex-row sm:items-center cursor-pointer p-3 sm:p-3.5 relative transition-all"
                         style={{
                           border: `1px solid ${selected ? "#C4A672" : "rgba(16,22,29,0.14)"}`,
                           background: selected ? "rgba(196,166,114,0.08)" : "transparent",
                         }}
                       >
                         <div
-                          className="w-32 h-24 flex-none bg-cover bg-center"
+                          className="w-full h-32 sm:w-32 sm:h-24 flex-none bg-cover bg-center"
                           style={{ backgroundImage: `url('${r.img}')` }}
                         />
-                        <div className="flex-1 px-5.5">
-                          <div className="font-serif text-xl text-ink">{r.name}</div>
+                        <div className="flex-1 pt-3 sm:pt-0 sm:px-5.5">
+                          <div className="font-serif text-lg sm:text-xl text-ink">{r.name}</div>
                           <div className="text-xs text-[rgba(16,22,29,0.48)] mt-1.5">{r.spec}</div>
                         </div>
-                        <div className="text-right pr-3">
-                          <div className="text-[10.5px] tracking-[0.16em] uppercase text-[rgba(16,22,29,0.42)]">
+                        <div className="flex sm:block items-baseline justify-between mt-3 sm:mt-0 sm:text-right sm:pr-3">
+                          <div className="text-[10px] sm:text-[10.5px] tracking-[0.14em] sm:tracking-[0.16em] uppercase text-[rgba(16,22,29,0.42)]">
                             {n} nights
                           </div>
-                          <div className="font-serif text-[22px] text-gold">${r.rate * n}</div>
+                          <div className="font-serif text-lg sm:text-[22px] text-gold">${r.rate * n}</div>
                         </div>
                         <div
-                          className="absolute top-3.5 right-3.5 w-4 h-4 rounded-full transition-all"
+                          className="absolute top-3 right-3 sm:top-3.5 sm:right-3.5 w-4 h-4 rounded-full transition-all"
                           style={{
                             border: `1px solid ${selected ? "#C4A672" : "rgba(16,22,29,0.3)"}`,
                             background: selected ? "#C4A672" : "transparent",
@@ -377,7 +380,7 @@ export default function BookingPage() {
                   type="button"
                   disabled={!state.selectedRoomId}
                   onClick={() => state.selectedRoomId && goStep(3)}
-                  className="mt-7 border-none text-xs tracking-[0.24em] uppercase text-ink px-11.5 py-4.75 font-medium transition-all"
+                  className="mt-7 border-none w-full sm:w-auto inline-flex sm:inline-block items-center justify-center text-xs tracking-[0.24em] uppercase text-ink px-11.5 py-4 sm:py-4.75 font-medium transition-all"
                   style={{
                     cursor: state.selectedRoomId ? "pointer" : "not-allowed",
                     background: state.selectedRoomId ? "#C4A672" : "rgba(16,22,29,0.15)",
@@ -400,28 +403,28 @@ export default function BookingPage() {
                       <div
                         key={addon.id}
                         onClick={() => dispatch({ type: "TOGGLE_ADDON", id: addon.id })}
-                        className="flex items-center justify-between py-5.5 border-b border-[rgba(16,22,29,0.12)] cursor-pointer"
+                        className="flex items-center justify-between py-4 sm:py-5.5 border-b border-[rgba(16,22,29,0.12)] cursor-pointer gap-3"
                       >
-                        <div className="flex items-center gap-5">
+                        <div className="flex items-center gap-3.5 sm:gap-5 min-w-0">
                           <div
-                            className="w-5.5 h-5.5 flex-shrink-0 transition-all"
+                            className="w-5 h-5 sm:w-5.5 sm:h-5.5 flex-shrink-0 transition-all"
                             style={{
                               border: `1px solid ${checked ? "#C4A672" : "rgba(16,22,29,0.3)"}`,
                               background: checked ? "#C4A672" : "transparent",
                             }}
                           />
-                          <div>
-                            <div className="text-[15.5px] text-ink">{addon.name}</div>
+                          <div className="min-w-0">
+                            <div className="text-sm sm:text-[15.5px] text-ink">{addon.name}</div>
                             <div className="text-xs text-[rgba(16,22,29,0.48)] mt-1">{addon.desc}</div>
                           </div>
                         </div>
-                        <div className="font-serif text-[17px] text-ink flex-shrink-0 ml-4">+${addon.price}</div>
+                        <div className="font-serif text-[15px] sm:text-[17px] text-ink flex-shrink-0">+${addon.price}</div>
                       </div>
                     );
                   })}
                 </div>
 
-                <div className="flex justify-between mt-10">
+                <div className="flex justify-between items-center mt-8 sm:mt-10">
                   <button
                     type="button"
                     onClick={() => goStep(2)}
@@ -432,7 +435,7 @@ export default function BookingPage() {
                   <button
                     type="button"
                     onClick={() => goStep(4)}
-                    className="cursor-pointer border-none text-xs tracking-[0.24em] uppercase text-ink bg-gold px-11.5 py-4.75"
+                    className="cursor-pointer border-none text-xs tracking-[0.24em] uppercase text-ink bg-gold px-8 sm:px-11.5 py-3.5 sm:py-4.75"
                   >
                     Continue &rarr;
                   </button>
@@ -444,7 +447,7 @@ export default function BookingPage() {
               <div key={state.animKey} style={{ animation: "fade-slide-in 0.9s cubic-bezier(0.16,1,0.3,1)" }}>
                 <StepHeading num="04" eyebrow="Your details" title="Who's staying?" />
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-7.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-7.5">
                   <FloatField
                     label="Full name"
                     value={state.guestName}
@@ -485,7 +488,7 @@ export default function BookingPage() {
 
                 {state.detailsError && <div className="text-xs text-error mt-6">{state.detailsError}</div>}
 
-                <div className="flex justify-between mt-12">
+                <div className="flex justify-between items-center mt-9 sm:mt-12">
                   <button
                     type="button"
                     onClick={() => goStep(3)}
@@ -496,7 +499,7 @@ export default function BookingPage() {
                   <button
                     type="button"
                     onClick={goToPayment}
-                    className="cursor-pointer border-none text-xs tracking-[0.24em] uppercase text-ink bg-gold px-11.5 py-4.75"
+                    className="cursor-pointer border-none text-xs tracking-[0.24em] uppercase text-ink bg-gold px-6 sm:px-11.5 py-3.5 sm:py-4.75"
                   >
                     Continue to payment &rarr;
                   </button>
@@ -508,7 +511,7 @@ export default function BookingPage() {
               <div key={state.animKey} style={{ animation: "fade-slide-in 0.9s cubic-bezier(0.16,1,0.3,1)" }}>
                 <StepHeading num="05" eyebrow="Payment" title="Secure your stay." />
 
-                <label className="flex flex-col gap-2.5 mb-6.5">
+                <label className="flex flex-col gap-2.5 mb-5 sm:mb-6.5">
                   <span className="text-[10.5px] tracking-[0.2em] uppercase text-[rgba(16,22,29,0.5)]">
                     Card number
                   </span>
@@ -517,10 +520,10 @@ export default function BookingPage() {
                     value={state.cardNumber}
                     onChange={(e) => dispatch({ type: "SET_CARD_FIELD", field: "cardNumber", value: e.target.value })}
                     placeholder="4242 4242 4242 4242"
-                    className="border-none border-b border-[rgba(16,22,29,0.25)] bg-transparent text-[17px] py-2.5 text-ink focus:outline-none"
+                    className="border-none border-b border-[rgba(16,22,29,0.25)] bg-transparent text-[15px] sm:text-[17px] py-2.5 text-ink focus:outline-none w-full"
                   />
                 </label>
-                <div className="grid grid-cols-2 gap-6.5">
+                <div className="grid grid-cols-2 gap-4 sm:gap-6.5">
                   <label className="flex flex-col gap-2.5">
                     <span className="text-[10.5px] tracking-[0.2em] uppercase text-[rgba(16,22,29,0.5)]">Expiry</span>
                     <input
@@ -528,7 +531,7 @@ export default function BookingPage() {
                       value={state.cardExpiry}
                       onChange={(e) => dispatch({ type: "SET_CARD_FIELD", field: "cardExpiry", value: e.target.value })}
                       placeholder="MM / YY"
-                      className="border-none border-b border-[rgba(16,22,29,0.25)] bg-transparent text-[17px] py-2.5 text-ink focus:outline-none"
+                      className="border-none border-b border-[rgba(16,22,29,0.25)] bg-transparent text-[15px] sm:text-[17px] py-2.5 text-ink focus:outline-none w-full"
                     />
                   </label>
                   <label className="flex flex-col gap-2.5">
@@ -538,36 +541,36 @@ export default function BookingPage() {
                       value={state.cardCvc}
                       onChange={(e) => dispatch({ type: "SET_CARD_FIELD", field: "cardCvc", value: e.target.value })}
                       placeholder="123"
-                      className="border-none border-b border-[rgba(16,22,29,0.25)] bg-transparent text-[17px] py-2.5 text-ink focus:outline-none"
+                      className="border-none border-b border-[rgba(16,22,29,0.25)] bg-transparent text-[15px] sm:text-[17px] py-2.5 text-ink focus:outline-none w-full"
                     />
                   </label>
                 </div>
 
                 {state.paymentError && <div className="text-xs text-error mt-6">{state.paymentError}</div>}
 
-                <div className="flex items-center gap-2.5 mt-8 text-[11px] text-[rgba(16,22,29,0.42)] tracking-[0.04em]">
+                <div className="flex items-center gap-2.5 mt-7 sm:mt-8 text-[10px] sm:text-[11px] text-[rgba(16,22,29,0.42)] tracking-[0.04em]">
                   <span>&#128274;</span>
                   <span>Payments are encrypted and processed securely.</span>
                 </div>
 
-                <div className="bg-ink text-ivory p-6 mt-8">
-                  <div className="flex justify-between text-[13px] mb-2.5">
+                <div className="bg-ink text-ivory p-4 sm:p-6 mt-7 sm:mt-8">
+                  <div className="flex justify-between text-xs sm:text-[13px] mb-2.5 gap-3">
                     <span className="text-[rgba(245,241,233,0.6)]">{room?.name}</span>
                     <span>${roomTotal}</span>
                   </div>
                   {selectedAddons.map((a) => (
-                    <div key={a.id} className="flex justify-between text-[13px] mb-2.5">
+                    <div key={a.id} className="flex justify-between text-xs sm:text-[13px] mb-2.5 gap-3">
                       <span className="text-[rgba(245,241,233,0.6)]">{a.name}</span>
                       <span>${a.price}</span>
                     </div>
                   ))}
-                  <div className="flex justify-between font-serif text-xl pt-3 mt-2 border-t border-[rgba(196,166,114,0.5)]">
+                  <div className="flex justify-between font-serif text-lg sm:text-xl pt-3 mt-2 border-t border-[rgba(196,166,114,0.5)]">
                     <span>Total</span>
                     <span className="text-gold">${grandTotal}</span>
                   </div>
                 </div>
 
-                <div className="flex justify-between mt-10">
+                <div className="flex justify-between items-center mt-8 sm:mt-10">
                   <button
                     type="button"
                     onClick={() => goStep(4)}
@@ -578,7 +581,7 @@ export default function BookingPage() {
                   <button
                     type="button"
                     onClick={submitPayment}
-                    className="border-none text-xs tracking-[0.24em] uppercase text-ink bg-gold px-11.5 py-4.75"
+                    className="border-none text-xs tracking-[0.24em] uppercase text-ink bg-gold px-6 sm:px-11.5 py-3.5 sm:py-4.75"
                     style={{ cursor: state.paying ? "default" : "pointer", opacity: state.paying ? 0.7 : 1 }}
                   >
                     {state.paying ? "Processing…" : `Pay $${grandTotal}`}
@@ -595,7 +598,7 @@ export default function BookingPage() {
 
 function TopNav() {
   return (
-    <nav className="flex items-center justify-between px-10 py-5.5 bg-ink relative z-5">
+    <nav className="flex items-center justify-between px-5 sm:px-8 lg:px-10 py-4 sm:py-5.5 bg-ink relative z-5">
       <div
         className="absolute inset-0 opacity-5 pointer-events-none"
         style={{
@@ -604,15 +607,16 @@ function TopNav() {
         }}
       />
       <Link href="/" className="no-underline flex items-baseline gap-2.5 relative">
-        <span className="font-serif text-[21px] text-ivory">
+        <span className="font-serif text-lg sm:text-[21px] text-ivory">
           Halyard<span className="text-gold">.</span>
         </span>
-        <span className="text-[10px] tracking-[0.3em] uppercase text-[rgba(245,241,233,0.55)]">House</span>
+        <span className="hidden sm:inline text-[10px] tracking-[0.3em] uppercase text-[rgba(245,241,233,0.55)]">House</span>
       </Link>
-      <div className="flex items-center gap-3.5 relative">
+      <div className="flex items-center gap-2.5 sm:gap-3.5 relative">
         <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-        <span className="text-[11px] tracking-[0.24em] uppercase text-[rgba(245,241,233,0.6)]">
-          Secure reservation
+        <span className="text-[10px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.24em] uppercase text-[rgba(245,241,233,0.6)]">
+          <span className="hidden sm:inline">Secure reservation</span>
+          <span className="sm:hidden">Secure</span>
         </span>
       </div>
     </nav>
@@ -624,10 +628,10 @@ function StepHeading({ num, eyebrow, title }: { num: string; eyebrow: string; ti
     <>
       <div className="flex items-baseline gap-4 mb-2.5">
         <span className="font-serif text-sm text-gold">{num}</span>
-        <span className="text-[11px] tracking-[0.3em] uppercase text-[rgba(16,22,29,0.5)]">{eyebrow}</span>
+        <span className="text-[10px] sm:text-[11px] tracking-[0.24em] sm:tracking-[0.3em] uppercase text-[rgba(16,22,29,0.5)]">{eyebrow}</span>
       </div>
       {title && (
-        <h1 className="mt-0 mb-11 font-serif font-normal text-[clamp(30px,3vw,42px)] text-ink">{title}</h1>
+        <h1 className="mt-0 mb-7 sm:mb-11 font-serif font-normal text-[clamp(26px,7vw,42px)] text-ink">{title}</h1>
       )}
     </>
   );
@@ -656,8 +660,8 @@ function FloatField({
       <label
         className="absolute left-0 pointer-events-none transition-all duration-[0.45s] ease-[cubic-bezier(0.16,1,0.3,1)]"
         style={{
-          top: active ? "-14px" : "18px",
-          fontSize: active ? "11px" : "17px",
+          top: active ? "-14px" : "16px",
+          fontSize: active ? "11px" : "15px",
           letterSpacing: active ? "0.14em" : "0",
           textTransform: active ? "uppercase" : "none",
           color: active ? "rgba(16,22,29,0.5)" : "rgba(16,22,29,0.4)",
@@ -671,7 +675,7 @@ function FloatField({
         onChange={(e) => onChange(e.target.value)}
         onFocus={onFocus}
         onBlur={onBlur}
-        className="w-full border-none border-b border-[rgba(16,22,29,0.25)] bg-transparent text-[17px] py-2.5 text-ink focus:outline-none"
+        className="w-full border-none border-b border-[rgba(16,22,29,0.25)] bg-transparent text-[15px] sm:text-[17px] py-2.5 text-ink focus:outline-none"
       />
     </div>
   );

@@ -49,7 +49,7 @@ export function Calendar({
 
   return (
     <div
-      className="absolute top-[calc(100%+10px)] left-0 right-0 bg-white border border-[rgba(16,22,29,0.14)] shadow-[0_24px_60px_rgba(16,22,29,0.16)] z-10 p-6"
+      className="absolute top-[calc(100%+10px)] left-0 right-0 bg-white border border-[rgba(16,22,29,0.14)] shadow-[0_24px_60px_rgba(16,22,29,0.16)] z-10 p-4 sm:p-6"
       style={{ animation: "fade-slide-in 0.5s cubic-bezier(0.16,1,0.3,1)" }}
     >
       <div className="flex items-center justify-between mb-4.5">

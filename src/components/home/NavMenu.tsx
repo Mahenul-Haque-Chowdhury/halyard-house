@@ -58,11 +58,11 @@ export function NavMenu() {
               }}
             />
 
-            <div className="relative h-[97px] flex items-center justify-between px-12 border-b border-[rgba(245,241,233,0.14)]">
+            <div className="relative h-[76px] sm:h-[86px] lg:h-[97px] flex items-center justify-between px-5 sm:px-8 lg:px-12 border-b border-[rgba(245,241,233,0.14)]">
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 cursor-pointer bg-transparent border-none text-sm tracking-[0.22em] uppercase text-[rgba(245,241,233,0.85)] transition-colors hover:text-gold"
+                className="flex items-center gap-3 cursor-pointer bg-transparent border-none text-[13px] sm:text-sm tracking-[0.22em] uppercase text-[rgba(245,241,233,0.85)] transition-colors hover:text-gold"
               >
                 <span className="relative flex flex-col gap-[5px] w-5">
                   <span className="block h-px w-full bg-current rotate-[20deg] origin-center translate-y-[3px]" />
@@ -70,19 +70,19 @@ export function NavMenu() {
                 </span>
                 Close
               </button>
-              <span className="font-serif text-2xl text-ivory">
+              <span className="font-serif text-lg sm:text-xl lg:text-2xl text-ivory">
                 Halyard<span className="text-gold">.</span>
               </span>
             </div>
 
-            <nav className="relative px-12 pt-14">
+            <nav className="relative px-5 sm:px-8 lg:px-12 pt-8 sm:pt-10 lg:pt-14 h-[calc(100%-76px)] sm:h-[calc(100%-86px)] lg:h-[calc(100%-97px)] overflow-y-auto">
               <div className="max-w-[720px]">
                 {LINKS.map(([idx, href, label], i) => (
                   <a
                     key={href}
                     href={href}
                     onClick={() => setOpen(false)}
-                    className="group no-underline flex items-baseline gap-7 py-6 border-b border-[rgba(245,241,233,0.14)]"
+                    className="group no-underline flex items-baseline gap-3 sm:gap-7 py-3.5 sm:py-6 border-b border-[rgba(245,241,233,0.14)]"
                   >
                     <span
                       className="font-serif text-sm text-gold transition-transform duration-[1.4s] ease-[cubic-bezier(0.16,1,0.3,1)]"
@@ -97,7 +97,7 @@ export function NavMenu() {
                     </span>
                     <span className="overflow-hidden flex-1">
                       <span
-                        className="block font-serif font-normal text-[clamp(36px,6vw,72px)] leading-[1.05] text-ivory transition-transform duration-[1.7s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-gold group-hover:translate-x-3"
+                        className="block font-serif font-normal text-[clamp(28px,10vw,72px)] leading-[1.05] text-ivory transition-transform duration-[1.7s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-gold sm:group-hover:translate-x-3"
                         style={{
                           transform: open ? "translateY(0)" : "translateY(110%)",
                           transitionDelay: open ? `${i * 0.09 + 0.15}s` : "0s",
@@ -107,7 +107,7 @@ export function NavMenu() {
                       </span>
                     </span>
                     <span
-                      className="text-gold text-xl transition-all duration-500 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
+                      className="hidden sm:inline text-gold text-xl transition-all duration-500 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
                       aria-hidden="true"
                     >
                       &rarr;
@@ -116,11 +116,11 @@ export function NavMenu() {
                 ))}
               </div>
 
-              <div className="mt-12 overflow-hidden">
+              <div className="mt-7 sm:mt-12 overflow-hidden">
                 <Link
                   href="/booking"
                   data-hover="true"
-                  className="inline-block no-underline text-xs tracking-[0.24em] uppercase text-ink bg-gold px-9 py-4.5 rounded-full font-medium transition-transform duration-[1.7s] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  className="inline-flex items-center justify-center w-full sm:w-auto no-underline text-xs tracking-[0.24em] uppercase text-ink bg-gold px-9 py-4 sm:py-4.5 rounded-full font-medium transition-transform duration-[1.7s] ease-[cubic-bezier(0.16,1,0.3,1)]"
                   style={{
                     transform: open ? "translateY(0)" : "translateY(110%)",
                     transitionDelay: open ? `${LINKS.length * 0.09 + 0.2}s` : "0s",
@@ -129,18 +129,18 @@ export function NavMenu() {
                   Reserve
                 </Link>
               </div>
-            </nav>
 
-            <div
-              className="absolute left-12 right-12 bottom-10 flex justify-between text-[11px] tracking-[0.24em] uppercase text-[rgba(245,241,233,0.4)] transition-opacity duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-              style={{
-                opacity: open ? 1 : 0,
-                transitionDelay: open ? "0.6s" : "0s",
-              }}
-            >
-              <span>Mendocino, California</span>
-              <span>(707) 555 0142</span>
-            </div>
+              <div
+                className="mt-8 flex flex-col sm:flex-row sm:absolute sm:left-12 sm:right-12 sm:bottom-10 sm:mt-0 gap-1.5 sm:gap-0 sm:justify-between text-[10px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.24em] uppercase text-[rgba(245,241,233,0.4)] transition-opacity duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                style={{
+                  opacity: open ? 1 : 0,
+                  transitionDelay: open ? "0.6s" : "0s",
+                }}
+              >
+                <span>Mendocino, California</span>
+                <span>(707) 555 0142</span>
+              </div>
+            </nav>
           </div>,
           document.body
         )}
